@@ -4,6 +4,7 @@ import { useState } from "react";
 import styles from './navigation.module.scss';
 
 import Menu from "../../ui/menu/Menu";
+import loop from '../../../assets/images/simple-line-icons_magnifier.svg';
 
 const Navigation: FC = () => {
 
@@ -21,8 +22,8 @@ const Navigation: FC = () => {
                     <div className={styles.search}>
                         <form>
                             <label htmlFor="search" className={styles.searchLabel}>
-                                <button className={styles.searchBtn}>Search</button>
-                                <input type="text" name="search" value={search} onChange={(e) => setSearch(e.target.value)} className={styles.search}/>
+                                <button className={styles.searchBtn}><img src={loop} alt="search" /></button>
+                                <input type="text" placeholder="Пошук" name="search" value={search} onChange={(e) => setSearch(e.target.value)} className={styles.searchInput}/>
                             </label>
                         </form>
                     </div>
