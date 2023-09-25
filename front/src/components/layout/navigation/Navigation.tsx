@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import styles from './navigation.module.scss';
 
-import Menu from "../../ui/menu/Menu";
 import loop from '../../../assets/images/simple-line-icons_magnifier.svg';
 
 const Navigation: FC = () => {
@@ -18,7 +17,6 @@ const Navigation: FC = () => {
                     <div className={styles.logotype}>
                         <img src="#" alt="logotype" />
                     </div>
-                    <Menu/>
                     <div className={styles.search}>
                         <form>
                             <label htmlFor="search" className={styles.searchLabel}>
@@ -28,7 +26,9 @@ const Navigation: FC = () => {
                         </form>
                     </div>
                     <div className={styles.login}>
-                        <h3>Login</h3>
+                        <div className={styles.account}>Account</div>
+                        <div className={styles.cart}>Cart:(0$)</div>
+                        <div className={styles.wishlist}>Wishlist</div>
                     </div>
                 </div>
             </div>

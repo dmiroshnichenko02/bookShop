@@ -1,11 +1,49 @@
+@import "../../../assets/styles/variables.scss";
+
 .menu {
-    width: 400px;
+  background-color: #173F5F;
 }
 
 .menuWrapper {
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
+  height: 40px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  list-style: none;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.item {
+  position: relative;
+  cursor: pointer;
+  color: $blog-color;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 2px;
+    background-color: #E16A00;
+    transition: width 0.3s ease;
+  }
+  &:hover {
+    &::before {
+        width: 100%;
+      }
+  }
+  &::after {
+    height: 90%;
+    width: 2px;
+    position: absolute;
+    content: "";
+    right: -100%;
+    background-color: #fff;
+  }
+  &:last-child {
+    &::after {
+      position: relative;
+    }
+  }
 }

@@ -1,10 +1,11 @@
 import Layout from "./components/layout/Layout"
+import Home from "./components/screens/home/Home"
 
 function App() {
 
   return (
     <Layout>
-      <div></div>
+      <Home/>
     </Layout>
   )
 }

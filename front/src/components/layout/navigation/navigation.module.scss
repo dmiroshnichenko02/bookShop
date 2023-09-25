@@ -1,3 +1,5 @@
+@import '../../../assets/styles/variables.scss';
+
 .nav {
     min-height: 60px;
 }
@@ -11,7 +13,10 @@
 .searchLabel {
     display: block;
     position: relative;
-    width: 200px;
+    width: 617px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #F6F6F6;
 }
 
 .searchBtn {
@@ -19,7 +24,7 @@
     position: absolute;
     content: "";
     top: 50%;
-    left: 5px;
+    right: 15px;
     transform: translateY(-50%);
     background-color: transparent;
     border: none;
@@ -33,17 +38,92 @@
 .searchInput {
     font-size: 12px;
     width: 100%;
+    height: 100%;
     padding: 5px 15px 5px 25px;
     border: none;
     outline: none;
     background-color: transparent;
-    border-bottom: 1px solid #696764;
+    border: 0px solid #696764;
+    border-radius: 20px;
     &:focus {
-        border-bottom-color: #E16A00;
+        border-color: #E16A00;
+        border-width: 1px;
     }
     &::placeholder {
         color: rgba(0, 0, 0, 0.35);
-        font-size: 11px;
+        font-size: 14px;
     }
 }
 
+.login h3{
+    cursor: pointer;
+    
+}
+
+.login {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account, .cart, .wishlist {
+    width: 110px;
+    text-align: center;
+    position: relative;
+    color: $menu-text-color;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+        color:  $active-color;
+        &::before {
+            svg, path {
+                fill: $active-color;
+            }
+        }
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 0;
+        height: 2px;
+        background-color: $active-color;
+        transition: width 0.3s ease;
+      }
+      &:hover {
+        &::after {
+            width: 80%;
+          }
+      }
+}
+
+.account, .cart {
+    border-right: 1px solid $menu-color;
+    margin-right: 10px;
+}
+
+.account::before {
+    position: absolute;
+    content: url(../../../assets/images/user.svg);
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.cart::before {
+    position: absolute;
+    content: url(../../../assets/images/cart.svg);
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.wishlist::before {
+    position: absolute;
+    content: url(../../../assets/images/wish.svg);
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
