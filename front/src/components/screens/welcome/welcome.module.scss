@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables.scss';
+@import "../../../assets/styles/variables.scss";
 
 .welcome {
   min-height: 657px;
@@ -13,6 +13,12 @@
 
 .wrapper {
   height: 657px;
+  display: flex;
+}
+
+.infoContainer {
+  width: 570px;
+  margin-left: auto;
 }
 
 .info {
@@ -39,5 +45,37 @@
     font-weight: 500;
     line-height: 180%; /* 39.6px */
     letter-spacing: 0.88px;
+  }
+
+  .button {
+    margin-top: 28px;
+    width: 197px;
+    height: 61px;
+    border-radius: 7px;
+    border: 1px solid $menu-text-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: $menu-text-color;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    img {
+      margin-left: 10px;
+    }
+  }
+}
+
+.bookSlider {
+  width: 50%;
+  padding-top: 20px;
+  margin-bottom: 30px;
+  img {
+    height: 100%;
+    width: 100%;
   }
 }

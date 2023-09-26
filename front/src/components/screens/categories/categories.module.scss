@@ -1,0 +1,99 @@
+@import "../../../assets/styles/variables.scss";
+
+.catalog {
+  min-height: 1016px;
+  padding-top: 96px;
+  background-color: #fff;
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, minmax(394px, auto));
+    gap: 44px 34px;
+    grid-auto-rows: minmax(394px, auto);
+  }
+  .item {
+    border-radius: 11px;
+    border: 1px solid #cacaca;
+    transition: all 0.5s;
+    cursor: pointer;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 0 40px 0;
+    h2 {
+      color: #fff;
+      text-align: center;
+      font-family: Inter;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+      text-transform: capitalize;
+    }
+    &:hover {
+      filter: grayscale(1.1);
+    }
+  }
+  .edu {
+    background: url(../../../assets/images/edu.png) center (center/cover)
+      no-repeat;
+  }
+
+  .all {
+    justify-content: center;
+    cursor: auto;
+    padding: 0;
+    &:hover {
+      filter: none;
+    }
+    h2 {
+      color: $menu-text-color;
+      text-align: center;
+      font-family: Inter;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      text-transform: capitalize;
+      margin-bottom: 53px;
+    }
+    .btn {
+      width: 200px;
+      height: 65px;
+      background-color: $active-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      font-family: Inter;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      text-transform: capitalize;
+      border: none;
+      outline: none;
+      border-radius: 11px;
+      cursor: pointer;
+    }
+  }
+
+  .manage {
+    background: url(../../../assets/images/manage.png) center (center/cover)
+      no-repeat;
+  }
+  .finance {
+    background: url(../../../assets/images/finance.png) center (center/cover)
+      no-repeat;
+  }
+  .engine {
+    background: url(../../../assets/images/engine.png) center (center/cover)
+      no-repeat;
+  }
+  .commerce {
+    background: url(../../../assets/images/commerce.png) center (center/cover)
+      no-repeat;
+  }
+}
