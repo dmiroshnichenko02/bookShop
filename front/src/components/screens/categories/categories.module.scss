@@ -21,6 +21,7 @@
     align-items: center;
     flex-direction: column;
     padding: 0 0 40px 0;
+    filter: grayscale(1.1);
     h2 {
       color: #fff;
       text-align: center;
@@ -32,7 +33,7 @@
       text-transform: capitalize;
     }
     &:hover {
-      filter: grayscale(1.1);
+      filter: none;
     }
   }
   .edu {
@@ -44,6 +45,7 @@
     justify-content: center;
     cursor: auto;
     padding: 0;
+    filter: none;
     &:hover {
       filter: none;
     }

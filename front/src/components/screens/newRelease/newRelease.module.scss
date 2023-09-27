@@ -1,0 +1,102 @@
+@import "../../../assets/styles/variables.scss";
+
+.release {
+  min-height: 790px;
+  padding: 92px 0;
+  border-bottom: 3px solid #E0E0E0;
+}
+
+.title {
+  color: $menu-text-color;
+  text-align: center;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1.874px;
+}
+
+.subtitle {
+  color: #767070;
+  text-align: center;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 166.667% */
+  letter-spacing: 1.289px;
+  margin-bottom: 30px;
+}
+
+.viewLink {
+  text-align: center;
+  margin-bottom: 47px;
+}
+
+a {
+  color: $active-color;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.32px;
+  text-transform: capitalize;
+  text-decoration: none;
+  position: relative;
+  &::after {
+    position: absolute;
+    content: url("../../../assets/images/active-arrow.svg");
+    top: 50%;
+    transform: translateY(-50%);
+    right: -25px;
+  }
+}
+
+.item {
+  width: 255px !important;
+  height: 340px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 1.03103px 4.12414px 15px 0px rgba(130, 130, 130, 0.18);
+  padding: 15px;
+  margin: 15px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 140px;
+    height: 211px;
+    object-fit: cover;
+  }
+
+  h3 {
+    color: $menu-text-color;
+    margin-top: 8px;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30.931px; /* 193.319% */
+    letter-spacing: 1.329px;
+  }
+
+  p {
+    color: #8f8f8f;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30.931px; /* 220.936% */
+    letter-spacing: 1.329px;
+  }
+
+  .star {
+    width: 96px;
+    height: 14px;
+  }
+}
