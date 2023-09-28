@@ -7,6 +7,8 @@ import Welcome from "../welcome/Welcome";
 import Categories from "../categories/Categories";
 import EBook from "../eBook/EBook";
 import NewRelease from "../newRelease/NewRelease";
+import WeekBook from "../weekBook/WeekBook";
+import Access from "../access/Access";
 
 const Home: FC = () => {
   return (
@@ -15,6 +17,8 @@ const Home: FC = () => {
       <Categories/>
       <EBook/>
       <NewRelease/>
+      <WeekBook/>
+      <Access/>
     </>
   );
 };

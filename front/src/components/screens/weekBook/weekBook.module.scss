@@ -1,0 +1,59 @@
+@import "../../../assets/styles/variables.scss";
+
+.week {
+  min-height: 780px;
+  padding: 92px 0;
+
+  .wrapper {
+    display: flex;
+    height: 596px;
+  }
+
+  .image {
+    width: 400px;
+    height: 100%;
+    img {
+        display: block;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+
+  .info {
+    height: 100%;
+    padding: 115px 0 115px 57px;
+
+    h4 {
+      color: #969595;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      letter-spacing: 1.054px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      color: #173f5f;
+      font-family: Inter;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      letter-spacing: 1.874px;
+      margin-bottom: 10px;
+    }
+
+    p {
+        margin-top: 31px;
+      color: #767070;
+      font-family: Inter;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 30px; /* 166.667% */
+      letter-spacing: 1.289px;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@import '../../../assets/styles/variables.scss';
+
+.btn {
+    margin-top: 28px;
+    width: 197px;
+    height: 61px;
+    border-radius: 7px;
+    border: 1px solid $menu-text-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: $menu-text-color;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    img {
+      margin-left: 10px;
+    }
+  }

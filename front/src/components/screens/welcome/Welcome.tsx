@@ -3,7 +3,9 @@ import { FC } from "react";
 import styles from "./welcome.module.scss";
 
 import bookSlide from "../../../assets/images/bookSlider.png";
-import more from '../../../assets/images/more.svg';
+// import more from '../../../assets/images/more.svg';
+
+import Button from "../../ui/button/Button";
 
 const Welcome: FC = () => {
   return (
@@ -17,7 +19,8 @@ const Welcome: FC = () => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Corrupti, quis.
               </p>
-              <button className={styles.button}>READ MORE <img src={more} alt="more" /></button>
+              {/* <button className={styles.button}>READ MORE <img src={more} alt="more" /></button> */}
+              <Button>READ MORE </Button>
             </div>
           </div>
           <div className={styles.bookSlider}>
