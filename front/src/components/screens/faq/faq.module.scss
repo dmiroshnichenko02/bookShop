@@ -1,0 +1,43 @@
+@import "../../../assets/styles/variables.scss";
+
+.faq {
+  min-height: 441px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    color: $menu-text-color;
+    text-align: center;
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1.874px;
+    margin-bottom: 21px;
+  }
+
+  p {
+    width: 808px;
+    margin: 0 auto;
+    color: $menu-text-color;
+    text-align: center;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px; /* 166.667% */
+    letter-spacing: 1.289px;
+    margin-bottom: 54px;
+  }
+
+  .btns {
+    button {
+        margin: 0 auto;
+        img {
+            display: none;
+        }
+    }
+  }
+}

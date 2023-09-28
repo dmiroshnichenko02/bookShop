@@ -9,6 +9,7 @@ import EBook from "../eBook/EBook";
 import NewRelease from "../newRelease/NewRelease";
 import WeekBook from "../weekBook/WeekBook";
 import Access from "../access/Access";
+import Faq from "../faq/Faq";
 
 const Home: FC = () => {
   return (
@@ -19,6 +20,7 @@ const Home: FC = () => {
       <NewRelease/>
       <WeekBook/>
       <Access/>
+      <Faq/>
     </>
   );
 };
