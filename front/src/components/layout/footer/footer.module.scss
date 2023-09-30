@@ -1,0 +1,95 @@
+@import "../../../assets/styles/variables.scss";
+
+footer {
+  background: #f7fcfc;
+  padding-top: 101px;
+  min-height: 500px;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 300px;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  .logoSection,
+  .company {
+    width: 368px;
+
+    h2 {
+      color: $active-color;
+      font-family: Inter;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      letter-spacing: 0.48px;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+  }
+
+  .logoSection {
+    h4 {
+      color: $menu-text-color;
+      font-family: Inter;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 34px; /* 188.889% */
+      letter-spacing: 0.36px;
+    }
+  }
+
+  .company {
+    padding: 0 90px;
+
+    .nav {
+      list-style-type: none;
+      li {
+        margin-bottom: 20px;
+        color: $menu-text-color;
+        font-family: Inter;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 0.36px;
+        text-transform: uppercase;
+        cursor: pointer;
+        &:hover {
+            color: $active-color;
+        }
+      }
+    }
+  }
+}
+
+.subfooter {
+  display: flex;
+  justify-content: space-between;
+  h3 {
+    color: $menu-text-color;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.36px;
+  }
+
+  a {
+    color: $menu-text-color;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.36px;
+    text-decoration: none;
+    margin: 0 5px;
+    &:hover {
+        color: $active-color;
+    }
+  }
+}

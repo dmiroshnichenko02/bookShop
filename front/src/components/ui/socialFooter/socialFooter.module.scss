@@ -1,0 +1,29 @@
+.social {
+  width: 368px;
+
+  h2 {
+    color: #ed553b;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.48px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    li {
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+}

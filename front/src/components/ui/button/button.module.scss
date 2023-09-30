@@ -17,7 +17,15 @@
     font-weight: 400;
     letter-spacing: 1.6px;
     text-transform: uppercase;
-    img {
+    cursor: pointer;
+    &:hover {
+      border-color: $active-color;
+      color: $active-color;
+      svg,path {
+        fill: $active-color;
+      }
+    }
+    svg {
       margin-left: 10px;
     }
   }
