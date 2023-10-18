@@ -1,101 +1,47 @@
 @import "../../../assets/styles/variables.scss";
 
 .catalog {
-  min-height: 1016px;
-  padding-top: 96px;
+  min-height: 650px;
+  padding-top: 60px;
   background-color: #fff;
-  .wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, minmax(394px, auto));
-    gap: 44px 34px;
-    grid-auto-rows: minmax(394px, auto);
-  }
-  .item {
-    border-radius: 11px;
-    border: 1px solid #cacaca;
-    transition: all 0.5s;
-    cursor: pointer;
+}
+
+.title {
+  color: $nav-color;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 36px; /* 100% */
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.slider {
+  width: 100%;
+}
+
+.sliderItem {
+  width: 212px;
+  .img {
+    margin-bottom: 14px;
+    width: 212px;
+    height: 212px;
+    border-radius: 50%;
     display: flex;
-    justify-content: end;
-    align-items: center;
-    flex-direction: column;
-    padding: 0 0 40px 0;
-    filter: grayscale(1.1);
-    h2 {
-      color: #fff;
-      text-align: center;
-      font-family: Inter;
-      font-size: 30px;
-      font-style: normal;
-      font-weight: 800;
-      line-height: normal;
-      text-transform: capitalize;
-    }
-    &:hover {
-      filter: none;
-    }
-  }
-  .edu {
-    background: url(../../../assets/images/edu.png) center (center/cover)
-      no-repeat;
-  }
-
-  .all {
     justify-content: center;
-    cursor: auto;
-    padding: 0;
-    filter: none;
-    &:hover {
-      filter: none;
-    }
-    h2 {
-      color: $menu-text-color;
-      text-align: center;
-      font-family: Inter;
-      font-size: 46px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-      text-transform: capitalize;
-      margin-bottom: 53px;
-    }
-    .btn {
-      width: 200px;
-      height: 65px;
-      background-color: $active-color;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      text-align: center;
-      font-family: Inter;
-      font-size: 28px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-      text-transform: capitalize;
-      border: none;
-      outline: none;
-      border-radius: 11px;
-      cursor: pointer;
+    align-items: end;
+    background-color: #f0ebd5;
+    overflow: hidden;
+    img {
+      width: 120px;
+      height: 183px;
     }
   }
 
-  .manage {
-    background: url(../../../assets/images/manage.png) center (center/cover)
-      no-repeat;
-  }
-  .finance {
-    background: url(../../../assets/images/finance.png) center (center/cover)
-      no-repeat;
-  }
-  .engine {
-    background: url(../../../assets/images/engine.png) center (center/cover)
-      no-repeat;
-  }
-  .commerce {
-    background: url(../../../assets/images/commerce.png) center (center/cover)
-      no-repeat;
+  .bookTitle {
+    color: $nav-color;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: center;
   }
 }

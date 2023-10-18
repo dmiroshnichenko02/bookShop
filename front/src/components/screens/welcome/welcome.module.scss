@@ -1,18 +1,13 @@
 @import "../../../assets/styles/variables.scss";
 
 .welcome {
-  min-height: 657px;
-  background: linear-gradient(
-    84deg,
-    #ffe5e5 22.18%,
-    #f5fffe 49.52%,
-    #fff 114.21%,
-    #fff 171.73%
-  );
+  min-height: 700px;
+  background: url(../../../assets//images//HERO-FULL.png) center (center/cover)
+    no-repeat;
 }
 
 .wrapper {
-  height: 657px;
+  height: 700px;
   display: flex;
 }
 
@@ -27,55 +22,49 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  h4 {
+    color: $text-color;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 32px;
+    margin-bottom: 14px;
+  }
   h1 {
     color: $menu-text-color;
-    font-family: Inter;
     font-size: 60px;
     font-style: normal;
     font-weight: 600;
-    line-height: 145%; /* 87px */
-    letter-spacing: -1.2px;
-    text-transform: capitalize;
+    line-height: 72px; /* 120% */
+    margin-bottom: 41px;
   }
   p {
     color: $menu-text-color;
-    font-family: Inter;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 180%; /* 39.6px */
-    letter-spacing: 0.88px;
-  }
-
-  .button {
-    margin-top: 28px;
-    width: 197px;
-    height: 61px;
-    border-radius: 7px;
-    border: 1px solid $menu-text-color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    color: $menu-text-color;
-    font-family: Inter;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    letter-spacing: 1.6px;
-    text-transform: uppercase;
-    img {
-      margin-left: 10px;
-    }
+    line-height: 32px; /* 177.778% */
   }
 }
 
 .bookSlider {
   width: 50%;
-  padding-top: 20px;
-  margin-bottom: 30px;
+  padding-top: 50px;
   img {
-    height: 100%;
-    width: 100%;
+    margin-left: auto;
+    display: block;
+    width: 493px;
+    height: 592px;
+    object-fit: contain;
+  }
+}
+
+.btn {
+  button {
+    color: #fff;
+    border-color: #fff;
+    svg, path {
+      fill: #fff;
+    }
   }
 }

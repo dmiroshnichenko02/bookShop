@@ -5,9 +5,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgba(241, 89, 43, 0.20);
 
   h2 {
-    color: $menu-text-color;
+    color: $text-second-color;
     text-align: center;
     font-family: Inter;
     font-size: 32px;
@@ -21,7 +22,7 @@
   p {
     width: 808px;
     margin: 0 auto;
-    color: $menu-text-color;
+    color: $text-second-color;
     text-align: center;
     font-family: Inter;
     font-size: 18px;

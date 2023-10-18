@@ -8,8 +8,9 @@ import Categories from "../categories/Categories";
 import EBook from "../eBook/EBook";
 import NewRelease from "../newRelease/NewRelease";
 import WeekBook from "../weekBook/WeekBook";
-import Access from "../access/Access";
 import Faq from "../faq/Faq";
+import Sale from "../sale/Sale";
+import Information from "../information/Information";
 
 const Home: FC = () => {
   return (
@@ -19,7 +20,8 @@ const Home: FC = () => {
       <EBook/>
       <NewRelease/>
       <WeekBook/>
-      <Access/>
+      <Sale/>
+      <Information/>
       <Faq/>
     </>
   );

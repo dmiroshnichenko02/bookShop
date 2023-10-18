@@ -1,43 +1,30 @@
-import { FC, useState } from "react";
+import { FC } from "react";
+import Button from "../../ui/button/Button";
 
 import styles from "./eBook.module.scss";
 
-import image from '../../../assets/images/ebook-image.png'
+import books from "../../../assets/images/books-1.png";
 
 const EBook: FC = () => {
-  const [email, setEmail] = useState("");
-
   return (
     <>
       <section className={styles.ebook}>
-        <div className={styles.info}>
-          <div className={styles.container}>
-            <h3>ebook</h3>
-            <h2>
-              Access, Read, Practice & Engage with Digital Content (eBook)
-            </h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu
-              feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus
-              ut magna velit eleifend. Amet, quis urna, a eu.Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit.
-            </p>
-            <form>
-              <label htmlFor="email">
-                <input
-                  type="text"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                />
-                <button>Login</button>
-              </label>
-            </form>
+        <div className="container">
+          <div className={styles.wrapper}>
+            <div className={styles.info}>
+              <div className={styles.container}>
+                <h4>20% off on selected books</h4>
+                <h2>Bestselling</h2>
+                <h3>Non-Fiction Books!</h3>
+                <Button>Shop Now</Button>
+              </div>
+            </div>
+            <div className={styles.image}>
+              <img src={books} alt="books" />
+              <img src={books} alt="books" />
+              <img src={books} alt="books" />
+            </div>
           </div>
-        </div>
-        <div className={styles.image}>
-          <img src={image} alt="people" />
         </div>
       </section>
     </>

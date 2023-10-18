@@ -1,59 +1,89 @@
 @import "../../../assets/styles/variables.scss";
 
 .week {
-  min-height: 780px;
-  padding: 92px 0;
+  min-height: 505px;
+  background: rgba(241, 89, 43, 0.2);
+  padding-top: 60px;
+}
 
-  .wrapper {
-    display: flex;
-    height: 596px;
+.title {
+  color: $text-second-color;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 36px; /* 100% */
+  margin-bottom: 40px;
+  span {
+    margin-left: 25px;
+    color: $active-color;
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item {
+  width: 453px;
+  height: 270px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  img {
+    width: 156px;
+    height: 230px;
+    margin-right: 20px;
   }
 
-  .image {
-    width: 400px;
-    height: 100%;
-    img {
-        display: block;
-      height: 100%;
-      object-fit: fill;
-    }
+  .author {
+    color: $text-second-color;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 16px; /* 133.333% */
   }
 
-  .info {
-    height: 100%;
-    padding: 115px 0 115px 57px;
+  .bookTitle {
+    color: $text-second-color;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 125% */
+    margin-bottom: 15px;
+  }
 
-    h4 {
-      color: #969595;
-      font-family: Inter;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-      letter-spacing: 1.054px;
-      margin-bottom: 8px;
-    }
-
-    h2 {
-      color: #173f5f;
-      font-family: Inter;
-      font-size: 28px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-      letter-spacing: 1.874px;
-      margin-bottom: 10px;
-    }
-
-    p {
-        margin-top: 31px;
-      color: #767070;
-      font-family: Inter;
+  .price {
+    color: $active-color;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px; /* 166.667% */
+    span {
+      color: #999;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;
-      line-height: 30px; /* 166.667% */
-      letter-spacing: 1.289px;
+      text-decoration-line: line-through;
+      margin-left: 15px;
+    }
+  }
+
+  .sold {
+    margin-top: 15px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px; /* 100% */
+    span {
+      color: $text-second-color;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 14px;
     }
   }
 }

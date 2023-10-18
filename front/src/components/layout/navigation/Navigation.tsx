@@ -1,34 +1,41 @@
-import { FC} from "react";
-import { useState } from "react";
+import { FC } from "react";
+import Slider from "react-slick";
 
 import styles from './navigation.module.scss';
 
-import loop from '../../../assets/images/simple-line-icons_magnifier.svg';
+
 
 const Navigation: FC = () => {
 
-    const [search, setSearch] = useState("");
+    const settings = {
+        dots: false,
+        arrow: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerPadding: '0px',
+      };
 
   return (
     <>
         <nav className={styles.nav}>
             <div className="container">
                 <div className={styles.wrapper}>
-                    <div className={styles.logotype}>
-                        <img src="#" alt="logotype" />
+                    <div className={styles.sellBlock}>
+                        <div className={styles.sellItem}><a href="#">Membership</a></div>
+                        <div className={styles.sellItem}><a href="#">Coupons & Deals</a></div>
+                        <div className={styles.sellItem}><a href="#">Best Sellers</a></div>
                     </div>
-                    <div className={styles.search}>
-                        <form>
-                            <label htmlFor="search" className={styles.searchLabel}>
-                                <button className={styles.searchBtn}><img src={loop} alt="search" /></button>
-                                <input type="text" placeholder="Пошук" name="search" value={search} onChange={(e) => setSearch(e.target.value)} className={styles.searchInput}/>
-                            </label>
-                        </form>
-                    </div>
-                    <div className={styles.login}>
-                        <div className={styles.account}>Account</div>
-                        <div className={styles.cart}>Cart:(0$)</div>
-                        <div className={styles.wishlist}>Wishlist</div>
+                    <Slider {...settings} className={styles.slider}>
+                        <div className={styles.sliderItem}>70% off storewide and FREE shipping - Limited time</div>
+                        <div className={styles.sliderItem}>70% off storewide and FREE shipping - Limited time</div>
+                        <div className={styles.sliderItem}>70% off storewide and FREE shipping - Limited time</div>
+                    </Slider>
+                    <div className={styles.infoBlock}>
+                        <div className={styles.wishlist}>Wishlist (0)</div>
+                        <div className={styles.about}><a href="#">About Us</a></div>
+                        <div className={styles.help}>Help</div>
                     </div>
                 </div>
             </div>

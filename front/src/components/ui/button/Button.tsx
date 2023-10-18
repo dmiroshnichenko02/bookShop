@@ -17,7 +17,7 @@ const Button: FC<PropsWithChildren<unknown>> = ({ children }) => {
           <path
             id="Vector"
             d="M8.00414 0L7.22162 0.780453L10.9102 4.45764H0V5.54236H10.9102L7.22216 9.22009L8.00414 10L12.6264 5.38996L13 5L12.6264 4.61004L8.00414 0Z"
-            fill="#173F5F"
+            fill="#111111"
           />
         </svg>
       </button>
