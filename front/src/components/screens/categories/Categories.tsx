@@ -14,6 +14,33 @@ const Categories: FC = () => {
     slidesToScroll: 1,
     variableWidth: true,
     arrows: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          variableWidth: false,
+          // centerMode: true,
+        },
+      },
+    ],
   };
 
   return (
@@ -23,37 +50,37 @@ const Categories: FC = () => {
           <div className={styles.wrapper}>
             <h2 className={styles.title}>Shop by Category</h2>
             <Slider {...settings} className={styles.slider}>
-              <div className={styles.sliderItem} style={{width: "240px"}}>
+              <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
                   <img src={bookImg} alt="book" />
                 </div>
                 <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
               </div>
-              <div className={styles.sliderItem} style={{width: "240px"}}>
+              <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
                   <img src={bookImg} alt="book" />
                 </div>
                 <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
               </div>
-              <div className={styles.sliderItem} style={{width: "240px"}}>
+              <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
                   <img src={bookImg} alt="book" />
                 </div>
                 <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
               </div>
-              <div className={styles.sliderItem} style={{width: "240px"}}>
+              <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
                   <img src={bookImg} alt="book" />
                 </div>
                 <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
               </div>
-              <div className={styles.sliderItem} style={{width: "240px"}}>
+              <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
                   <img src={bookImg} alt="book" />
                 </div>
                 <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
               </div>
-              <div className={styles.sliderItem} style={{width: "240px"}}>
+              <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
                   <img src={bookImg} alt="book" />
                 </div>

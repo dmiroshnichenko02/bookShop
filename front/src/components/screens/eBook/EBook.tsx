@@ -4,6 +4,8 @@ import Button from "../../ui/button/Button";
 import styles from "./eBook.module.scss";
 
 import books from "../../../assets/images/books-1.png";
+import books2 from '../../../assets/images/see-book.png';
+import books3 from "../../../assets/images/books-4.png";
 
 const EBook: FC = () => {
   return (
@@ -21,8 +23,8 @@ const EBook: FC = () => {
             </div>
             <div className={styles.image}>
               <img src={books} alt="books" />
-              <img src={books} alt="books" />
-              <img src={books} alt="books" />
+              <img src={books2} alt="books" />
+              <img src={books3} alt="books" />
             </div>
           </div>
         </div>

@@ -21,6 +21,13 @@
 
 .sliderItem {
   width: 212px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.01);
+    .bookTitle {
+      color: $active-color;
+    }
+  }
   .img {
     margin-bottom: 14px;
     width: 212px;
@@ -43,5 +50,35 @@
     font-weight: 500;
     line-height: 30px;
     text-align: center;
+    padding-right: 20px;
   }
+}
+
+@media (max-width: 1340px) {
+
+}
+
+@media (max-width: 1170px) {
+
+}
+@media (max-width: 991px) {
+
+}
+@media (max-width: 768px) {
+  .sliderItem {
+    margin: 0 auto;
+    text-align: center;
+    .img {
+      margin: 0 auto;
+    }
+    .bookTitle{
+      padding: 0;
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+
+}
+@media (max-width: 568px) {
+
 }

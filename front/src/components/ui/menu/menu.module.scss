@@ -1,8 +1,8 @@
 @import "../../../assets/styles/variables.scss";
 
 .menu {
-  background-color: $nav-second-color;
   min-height: 100px;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -32,6 +32,10 @@
     font-weight: 500;
     line-height: 14px;
     position: relative;
+    cursor: pointer;
+    &:hover {
+      color: $active-color;
+    }
     &::before {
       position: absolute;
       content: url(../../../assets/images/categories.svg);
@@ -114,9 +118,28 @@
   line-height: 14px;
 }
 
+.login {
+  cursor: pointer;
+  position: relative;
+  &::before {
+    position: absolute;
+    content: url(../../../assets/images/user.svg);
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &:hover {
+    color: $active-color;
+  }
+}
+
 .cart {
   display: inline;
   position: relative;
+  cursor: pointer;
+  &:hover {
+    color: $active-color;
+  }
   &::before {
     position: absolute;
     content: url(../../../assets/images/cart.svg);
@@ -143,6 +166,69 @@
   }
 }
 
+// Mob menu
+
+.mobMenu {
+  display: none;
+  min-height: 60px;
+  .wrapper {
+    min-height: 60px;
+    align-items: center;
+    overflow: hidden;
+  }
+  .logotype {
+    h3 {
+      font-size: 18px;
+      margin-left: 10px;
+    }
+  }
+  .menuBlock {
+    overflow: hidden;
+    width: 30px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    // position: relative;
+    span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background-color: #000;
+      margin-bottom: 5px;
+      z-index: 1500;
+      transition: all 1s;
+    }
+  }
+
+  .menuItem {
+    display: none !important;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: relative;
+    right: -50%;
+    top: 0;
+    width: 40%;
+    height: 100vh;
+    display: flex;
+    background-color: red;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+    transition: all 1s;
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-direction: column;
+    }
+  }
+}
+
 @media (max-width: 1340px) {
   .logotype {
     width: 100px;
@@ -151,14 +237,33 @@
     }
   }
   .search {
-    width: 450px;
+    width: 350px;
+  }
+
+  .category {
+    width: 80px;
+    .catItem::after {
+      right: -15px;
+    }
   }
 }
 @media (max-width: 1170px) {
+  .menu {
+    display: none;
+  }
 
+  .mobMenu {
+    display: block;
+  }
 }
+
+@media (max-width: 991px) {
+}
+
 @media (max-width: 768px) {
 }
 @media (max-width: 568px) {
-
+  header {
+    min-height: 60px;
+  }
 }

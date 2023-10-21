@@ -70,3 +70,71 @@
     }
   }
 }
+
+
+@media (max-width: 1510px) {
+  .item {
+    width: 32%;
+    height: 340px;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    img {
+      width: 180px;
+    }
+    h3 {
+      width: 150px;
+      font-size: 28px;
+    }
+  }
+}
+
+@media (max-width: 1340px) {
+  .wrapper {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .item {
+    width: 453px;
+    height: 340px;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 1170px) {
+}
+@media (max-width: 991px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 568px) {
+
+  .item {
+    width: 90%;
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    h5 {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    h3 {
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+    button {
+      margin-bottom: 20px;
+    }
+    h3 {
+      width: auto;
+    }
+    button {
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -14,6 +14,44 @@ const NewRelease: FC = () => {
     variableWidth: true,
     autoplay: true,
     arrows: true,
+    responsive: [
+      {
+        breakpoint: 1340,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          centerMode: false,
+          variableWidth: false
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: false,
+          variableWidth: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          // centerMode: false,
+          variableWidth: false
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+          variableWidth: false,
+        },
+      },
+    ],
   };
 
   return (

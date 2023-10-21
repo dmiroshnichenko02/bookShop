@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(241, 89, 43, 0.20);
+  background: rgba(241, 89, 43, 0.2);
 
   h2 {
     color: $text-second-color;
@@ -35,10 +35,30 @@
 
   .btns {
     button {
-        margin: 0 auto;
-        img {
-            display: none;
-        }
+      margin: 0 auto;
+      img {
+        display: none;
+      }
     }
   }
+}
+
+@media (max-width: 1340px) {
+}
+
+@media (max-width: 1170px) {
+
+}
+@media (max-width: 991px) {
+  .faq {
+    padding: 40px 10px;
+    p {
+      width: 100%;
+    }
+  }
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 568px) {
+
 }

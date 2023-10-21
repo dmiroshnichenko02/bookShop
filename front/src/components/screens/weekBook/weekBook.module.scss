@@ -87,3 +87,95 @@
     }
   }
 }
+
+.progress {
+  margin-top: 10px;
+  width: 210px;
+  height: 7px;
+  background-color: rgba(217, 217, 217, 1);
+}
+
+@media (max-width: 1510px) {
+  .item {
+    width: 350px;
+    height: 220px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    img {
+      width: 100px;
+      height: 150px;
+    }
+    .bookTitle {
+      font-size: 14px;
+    }
+    .progress {
+      width: 85%;
+    }
+    button {
+      width: 85%;
+      height: 40px;
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 1340px) {
+  .item {
+    width: 453px;
+    height: 270px;
+    margin-bottom: 20px;
+    .price {
+      font-size: 14px;
+      span {
+        font-size: 14px;
+      }
+    }
+    button {
+      width: 95%;
+      font-size: 12px;
+    }
+    img {
+      width: 156px;
+      height: 230px;
+      margin-right: 20px;
+    }
+    .author {
+      margin-bottom: 12px;
+    }
+  }
+  .wrapper {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 1170px) {
+}
+@media (max-width: 991px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 568px) {
+  .item {
+    width: 90%;
+    height: auto;
+    margin-bottom: 20px;
+    flex-direction: column;
+    img {
+      width: 200px;
+      object-fit: fill;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+    .progress {
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+  }
+}
