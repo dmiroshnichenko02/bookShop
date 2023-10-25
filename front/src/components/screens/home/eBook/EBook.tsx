@@ -1,11 +1,11 @@
 import { FC } from "react";
-import Button from "../../ui/button/Button";
+import Button from "../../../ui/button/Button";
 
 import styles from "./eBook.module.scss";
 
-import books from "../../../assets/images/books-1.png";
-import books2 from '../../../assets/images/see-book.png';
-import books3 from "../../../assets/images/books-4.png";
+import books from "../../../../assets/images/books-1.png";
+import books2 from '../../../../assets/images/see-book.png';
+import books3 from "../../../../assets/images/books-4.png";
 
 const EBook: FC = () => {
   return (

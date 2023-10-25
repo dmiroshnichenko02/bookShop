@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import styles from "./faq.module.scss";
-import Button from "../../ui/button/Button";
+import Button from "../../../ui/button/Button";
 
 const Faq: FC = () => {
   return (

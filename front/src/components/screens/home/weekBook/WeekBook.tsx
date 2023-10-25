@@ -1,9 +1,11 @@
 import { FC, useState, useEffect } from "react";
 
 import styles from "./weekBook.module.scss";
-import Button from "../../ui/button/Button";
+import Button from "../../../ui/button/Button";
 
-import book from "../../../assets/images/books-2.png";
+import book from "..././../../assets/images/books-2.png";
+import book2 from "../../../../assets/images/books-1.png";
+import book3 from "../../../../assets/images/books-3.png";
 
 interface ITimer {
   hours:string,
@@ -82,7 +84,7 @@ const WeekBook: FC = () => {
                 </div>
               </div>
               <div className={styles.item}>
-                <img src={book} alt="day book" />
+                <img src={book3} alt="day book" />
                 <div className={styles.infoBlock}>
                   <div className={styles.author}>By Arthur Gonzalez</div>
                   <h3 className={styles.bookTitle}>A God Who Hates Women</h3>
@@ -97,7 +99,7 @@ const WeekBook: FC = () => {
                 </div>
               </div>
               <div className={styles.item}>
-                <img src={book} alt="day book" />
+                <img src={book2} alt="day book" />
                 <div className={styles.infoBlock}>
                   <div className={styles.author}>By Arthur Gonzalez</div>
                   <h3 className={styles.bookTitle}>A God Who Hates Women</h3>

@@ -3,7 +3,10 @@ import Slider from "react-slick";
 
 import styles from "./newRelease.module.scss";
 
-import bookFirst from "../../../assets/images/books-3.png";
+import bookFirst from "../../../../assets/images/books-3.png";
+import book2 from "../../../../assets/images/books-4.png";
+import book3 from "../../../../assets/images/books-2.png";
+import book4 from "../../../../assets/images/books-1.png";
 
 const NewRelease: FC = () => {
   const settings = {
@@ -68,7 +71,19 @@ const NewRelease: FC = () => {
                 <div className={styles.price}>$78.00</div>
               </div>
               <div className={styles.item}>
-                <img src={bookFirst} alt="book" />
+                <img src={book2} alt="book" />
+                <h3 className={styles.author}>By Arthur Gonzalez</h3>
+                <p className={styles.bookTitle}>The Story of Success</p>
+                <div className={styles.price}>$78.00</div>
+              </div>
+              <div className={styles.item}>
+                <img src={book4} alt="book" />
+                <h3 className={styles.author}>By Arthur Gonzalez</h3>
+                <p className={styles.bookTitle}>The Story of Success</p>
+                <div className={styles.price}>$78.00</div>
+              </div>
+              <div className={styles.item}>
+                <img src={book3} alt="book" />
                 <h3 className={styles.author}>By Arthur Gonzalez</h3>
                 <p className={styles.bookTitle}>The Story of Success</p>
                 <div className={styles.price}>$78.00</div>
@@ -80,19 +95,7 @@ const NewRelease: FC = () => {
                 <div className={styles.price}>$78.00</div>
               </div>
               <div className={styles.item}>
-                <img src={bookFirst} alt="book" />
-                <h3 className={styles.author}>By Arthur Gonzalez</h3>
-                <p className={styles.bookTitle}>The Story of Success</p>
-                <div className={styles.price}>$78.00</div>
-              </div>
-              <div className={styles.item}>
-                <img src={bookFirst} alt="book" />
-                <h3 className={styles.author}>By Arthur Gonzalez</h3>
-                <p className={styles.bookTitle}>The Story of Success</p>
-                <div className={styles.price}>$78.00</div>
-              </div>
-              <div className={styles.item}>
-                <img src={bookFirst} alt="book" />
+                <img src={book2} alt="book" />
                 <h3 className={styles.author}>By Arthur Gonzalez</h3>
                 <p className={styles.bookTitle}>The Story of Success</p>
                 <div className={styles.price}>$78.00</div>

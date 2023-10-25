@@ -2,9 +2,9 @@ import { FC } from "react";
 
 import styles from "./welcome.module.scss";
 
-import bookSlide from "../../../assets/images/HERO-MEDIA.png";
+import bookSlide from "../../../../assets/images/HERO-MEDIA.png";
 
-import Button from "../../ui/button/Button";
+import Button from "../../../ui/button/Button";
 
 const Welcome: FC = () => {
   return (

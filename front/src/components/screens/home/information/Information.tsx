@@ -2,10 +2,10 @@ import { FC } from 'react'
 
 import styles from './information.module.scss';
 
-import delivery from '../../../assets/images/delivery-car 1.svg';
-import custom from '../../../assets/images/customer-service 1.svg';
-import value from '../../../assets/images/value 1.svg';
-import pay from '../../../assets/images/secure-pay 1.svg';
+import delivery from '../../../../assets/images/delivery-car 1.svg';
+import custom from '../../../../assets/images/customer-service 1.svg';
+import value from '../../../../assets/images/value 1.svg';
+import pay from '../../../../assets/images/secure-pay 1.svg';
 
 const Information: FC = () => {
   return (

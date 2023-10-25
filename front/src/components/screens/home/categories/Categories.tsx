@@ -3,7 +3,10 @@ import Slider from "react-slick";
 
 import styles from "./categories.module.scss";
 
-import bookImg from "../../../assets/images/books-1.png";
+import bookImg from "../../../../assets/images/books-1.png";
+import book2 from "../../../../assets/images/books-2.png";
+import book3 from "../../../../assets/images/books-3.png";
+import book4 from "../../../../assets/images/books-4.png";
 
 const Categories: FC = () => {
   const settings = {
@@ -58,31 +61,31 @@ const Categories: FC = () => {
               </div>
               <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
-                  <img src={bookImg} alt="book" />
+                  <img src={book2} alt="book" />
                 </div>
                 <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
               </div>
               <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
-                  <img src={bookImg} alt="book" />
+                  <img src={book3} alt="book" />
                 </div>
                 <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
               </div>
               <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
-                  <img src={bookImg} alt="book" />
+                  <img src={book4} alt="book" />
                 </div>
                 <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
               </div>
               <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
-                  <img src={bookImg} alt="book" />
+                  <img src={book2} alt="book" />
                 </div>
                 <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
               </div>
               <div className={styles.sliderItem} style={{ width: "240px" }}>
                 <div className={styles.img}>
-                  <img src={bookImg} alt="book" />
+                  <img src={book3} alt="book" />
                 </div>
                 <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
               </div>

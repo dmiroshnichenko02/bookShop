@@ -2,9 +2,9 @@ import { FC } from "react";
 
 import styles from "./sale.module.scss";
 
-import red from '../../../assets/images/red.png';
-import green from '../../../assets/images/green.png';
-import blue from '../../../assets/images/blue.png';
+import red from '../../../../assets/images/red.png';
+import green from '../../../../assets/images/green.png';
+import blue from '../../../../assets/images/blue.png';
 
 const Sale: FC = () => {
   return (
