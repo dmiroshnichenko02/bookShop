@@ -1,9 +1,13 @@
 import { FC, PropsWithChildren } from 'react';
 
 import styles from './bookItem.module.scss';
+import { useParams } from 'react-router-dom';
 
-const bookItem: FC<PropsWithChildren<unknown>> = () => {
-  return <div className={styles.div}>bookItem</div>
+const BookItem: FC<PropsWithChildren<unknown>> = () => {
+
+  const {id} = useParams()
+
+  return <div className={styles.div}>bookItem {id} </div>
 }
 
-export default bookItem
+export default BookItem

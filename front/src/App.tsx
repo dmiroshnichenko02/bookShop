@@ -1,11 +1,11 @@
 import Layout from "./components/layout/Layout"
-import Home from "./components/screens/home/Home"
+import Router from "./router/Router"
 
 function App() {
 
   return (
     <Layout>
-      <Home/>
+      <Router/>
     </Layout>
   )
 }

@@ -11,12 +11,14 @@ import WeekBook from "./weekBook/WeekBook";
 import Faq from "./faq/Faq";
 import Sale from "./sale/Sale";
 import Information from "./information/Information";
+import AdminPanel from "../adminPanel/adminPanel";
 
 const Home: FC = () => {
   return (
     <>
       <Welcome/>
       <Categories/>
+      <AdminPanel/>
       <EBook/>
       <NewRelease/>
       <WeekBook/>

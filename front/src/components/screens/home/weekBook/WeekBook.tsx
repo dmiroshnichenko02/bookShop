@@ -3,7 +3,7 @@ import { FC, useState, useEffect } from "react";
 import styles from "./weekBook.module.scss";
 import Button from "../../../ui/button/Button";
 
-import book from "..././../../assets/images/books-2.png";
+import book from "../../../../assets/images/books-2.png";
 import book2 from "../../../../assets/images/books-1.png";
 import book3 from "../../../../assets/images/books-3.png";
 

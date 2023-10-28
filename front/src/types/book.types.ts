@@ -9,4 +9,5 @@ export interface IBook {
     languages: string | string[],
     authors: string | string[],
     genres: string | string[],
+    isbn?: number,
 }
