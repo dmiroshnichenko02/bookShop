@@ -1,4 +1,5 @@
 import { useHttp } from "../hooks/http.hook";
+import { IFormat } from "../types/format.types";
 
 const useFormatServices = () => {
   const { loading, request, error, clearError, process, setProcess } =
@@ -13,18 +14,18 @@ const useFormatServices = () => {
     return res.data.results.map(_transformFormat);
   };
 
-  const getFormatById = async (id) => {
+  const getFormatById = async (id: number) => {
     const res = await request(`${_apiBase}formats/${id}`);
     return _transformFormat(res.data);
   };
 
-  const postFormat = async (format) => {
+  const postFormat = async (format: string) => {
     const res = await request(`${_apiBase}format/add`, "POST", format);
     return _transformFormat(res.data);
   };
 
 
-  const _transformFormat= (formats) => {
+  const _transformFormat= (formats: IFormat) => {
     return {
         id: formats.id,
         format: formats.format,

@@ -1,4 +1,5 @@
 import { useHttp } from "../hooks/http.hook";
+import { IGenres } from "../types/genres.types";
 
 const useGenreServices = () => {
   const { loading, request, error, clearError, process, setProcess } =
@@ -13,18 +14,18 @@ const useGenreServices = () => {
     return res.data.results.map(_transformGenre);
   };
 
-  const getGenresById = async (id) => {
+  const getGenresById = async (id: number) => {
     const res = await request(`${_apiBase}genres/${id}`);
     return _transformGenre(res.data);
   };
 
-  const postGenre = async (genre) => {
+  const postGenre = async (genre: IGenres) => {
     const res = await request(`${_apiBase}genres/add`, "POST", genre);
     return _transformGenre(res.data);
   };
 
 
-  const _transformGenre = (genres) => {
+  const _transformGenre = (genres: IGenres) => {
     return {
         id: genres.id,
         genre: genres.genre,

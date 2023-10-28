@@ -1,4 +1,5 @@
 import { useHttp } from "../hooks/http.hook";
+import { IAuthor } from "../types/author.types";
 
 const useAuthorServices = () => {
   const { loading, request, error, clearError, process, setProcess } =
@@ -13,18 +14,18 @@ const useAuthorServices = () => {
     return res.data.results.map(_transformAuthor);
   };
 
-  const getAuthorById = async (id) => {
+  const getAuthorById = async (id: number) => {
     const res = await request(`${_apiBase}authors/${id}`);
     return _transformAuthor(res.data);
   };
 
-  const postAuthor = async (author) => {
+  const postAuthor = async (author: string) => {
     const res = await request(`${_apiBase}authors/add`, "POST", author);
     return _transformAuthor(res.data);
   };
 
 
-  const _transformAuthor = (author) => {
+  const _transformAuthor = (author: IAuthor) => {
     return {
         id: author.id,
         firstName: author.firstName,

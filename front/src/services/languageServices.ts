@@ -1,4 +1,5 @@
 import { useHttp } from "../hooks/http.hook";
+import { ILang } from "../types/lang.types";
 
 const useLanguageServices = () => {
   const { loading, request, error, clearError, process, setProcess } =
@@ -13,18 +14,18 @@ const useLanguageServices = () => {
     return res.data.results.map(_transformLanguage);
   };
 
-  const getLanguageById = async (id) => {
+  const getLanguageById = async (id: number) => {
     const res = await request(`${_apiBase}languages/${id}`);
     return _transformLanguage(res.data);
   };
 
-  const postLanguage = async (language) => {
+  const postLanguage = async (language: ILang) => {
     const res = await request(`${_apiBase}languages/add`, "POST", language);
     return _transformLanguage(res.data);
   };
 
 
-  const _transformLanguage = (languages) => {
+  const _transformLanguage = (languages: ILang) => {
     return {
         id: languages.id,
         language: languages.language,

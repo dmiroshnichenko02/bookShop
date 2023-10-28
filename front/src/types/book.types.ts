@@ -1,7 +1,7 @@
 export interface IBook {
-    id: number,
+    id?: number,
     name: string,
-    image: string,
+    image?: string,
     publicationYear: number,
     description: string,
     price: number,
@@ -10,4 +10,6 @@ export interface IBook {
     authors: string | string[],
     genres: string | string[],
     isbn?: number,
+    formats: string | string[],
+    rating: string,
 }
