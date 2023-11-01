@@ -11,17 +11,17 @@ const useLanguageServices = () => {
     const res = await request(
       `${_apiBase}languages`
     );
-    return res.data.results.map(_transformLanguage);
+    return res.map(_transformLanguage);
   };
 
   const getLanguageById = async (id: number) => {
     const res = await request(`${_apiBase}languages/${id}`);
-    return _transformLanguage(res.data);
+    return _transformLanguage(res);
   };
 
-  const postLanguage = async (language: ILang) => {
+  const postLanguage = async (language: string) => {
     const res = await request(`${_apiBase}languages/add`, "POST", language);
-    return _transformLanguage(res.data);
+    return _transformLanguage(res);
   };
 
 

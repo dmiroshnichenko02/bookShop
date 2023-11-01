@@ -1,39 +1,58 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 import { useForm, SubmitHandler } from "react-hook-form"
 
+import useLanguageServices from '../../../../services/languageServices';
+
+import styles from '../adminPanel.module.scss';
+
 type Inputs = {
-  example: string
-  exampleRequired: string
+  language: string
 }
 
-const LanguageForm: FC = () => {
+const FormatForm: FC = () => {
+
+    const {postLanguage} = useLanguageServices();
 
     const {
         register,
+        setValue,
         handleSubmit,
-        watch,
+        // watch,
         formState: { errors },
-      } = useForm<Inputs>()
-      const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+      } = useForm<Inputs>({
+        defaultValues: {
+          language: "",
+            
+        }
+      })
+      const onSubmit: SubmitHandler<Inputs> = async(data) => {
+        console.log(data);
 
-      console.log(watch("example")) // watch input value by passing the name of it
+        const newData = JSON.stringify(data)
+
+        const res = await postLanguage(newData);
+        console.log(res);
+        setValue('language', "")
+      }
+
+      
+
+      
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/* register your input into the hook by invoking the "register" function */}
-        <input defaultValue="test" {...register("example")} />
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.lang}>
+        <label htmlFor="language">
+            <input {...register("language", { required: true })} />
+            <span>language</span>
+        </label>
+        {errors.language && <span>This field is required</span>}
 
-        {/* include validation with required or other standard HTML validation rules */}
-        <input {...register("exampleRequired", { required: true })} />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <span>This field is required</span>}
-
-        <input type="submit" />
+        <button type="submit" className="submit-btn">Send</button>
       </form>
     </>
   );
-};
+}
 
-export default LanguageForm;
+export default FormatForm

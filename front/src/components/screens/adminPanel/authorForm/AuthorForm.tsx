@@ -65,7 +65,7 @@ const AuthorForm: FC = () => {
         </label>
         {errors.lastName && <span>This field is required</span>}
 
-        <input type="submit" />
+        <button type="submit" className="submit-btn">Send</button>
       </form>
     </>
   );

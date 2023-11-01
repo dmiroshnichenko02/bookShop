@@ -7,17 +7,18 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
 import styles from "./adminPanel.module.scss";
+
 import AuthorForm from "./authorForm/AuthorForm";
-import GenreForm from "./genreForm/genreForm";
-import FormatForm from "./formatForm/formatForm";
-import LanguageForm from "./languageForm/languageForm";
-import BookForm from "./bookForm/bookForm";
+import GenreForm from "./genreForm/GenreForm";
+import FormatForm from "./formatForm/FormatForm";
+import LanguageForm from "./languageForm/LanguageForm";
+import BookForm from "./bookForm/BookForm";
 
 const AdminPanel: FC = () => {
 
     const [value, setValue] = useState('1');
 
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
       };
 

@@ -1,124 +1,225 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import useBookServices from "../../../../services/bookServices";
+import useAuthorServices from "../../../../services/authorServices";
+import useFormatServices from "../../../../services/formatServices";
+import useLanguageServices from "../../../../services/languageServices";
+import useGenreServices from "../../../../services/genreServices";
+
+import { bdFetch } from "../fetchFunction";
+
 import { IBook } from "../../../../types/book.types";
+
+import Inputs from "../../../ui/inputs/Inputs";
+import CheckBox from "../../../ui/inputs/CheckBox";
+import { IAuthor } from "../../../../types/author.types";
+import { IFormat } from "../../../../types/format.types";
+import { ILang } from "../../../../types/lang.types";
+import { IGenres } from "../../../../types/genres.types";
+
+import styles from '../adminPanel.module.scss'
 
 interface Inputs extends IBook {}
 
 const BookForm: FC = () => {
+  const [allAuthors, setAllAuthors] = useState<IAuthor[] | []>([]);
+  const [allFormats, setAllFormats] = useState<IFormat[]>([]);
+  const [allLang, setAllLang] = useState<ILang[]>([]);
+  const [allGenre, setAllGenre] = useState<IGenres[]>([]);
+
+  const { getAllAuthors } = useAuthorServices();
+
+  const { getAllFormats } = useFormatServices();
+
+  const { getAllLanguages } = useLanguageServices();
+
+  const { getAllGenres } = useGenreServices();
+
+  // get all authors
+  useEffect(() => {
+    bdFetch(getAllAuthors, setAllAuthors);
+  }, []);
+
+  // get all formats
+  useEffect(() => {
+    bdFetch(getAllFormats, setAllFormats);
+  }, []);
+
+  // get all lang
+  useEffect(() => {
+    bdFetch(getAllLanguages, setAllLang);
+  }, []);
+
+  // get all genre
+  useEffect(() => {
+    bdFetch(getAllGenres, setAllGenre);
+  }, []);
+
+  console.log(allAuthors, allFormats, allLang, allGenre);
+
   const { postBook } = useBookServices();
 
   const {
     register,
     setValue,
     handleSubmit,
-    // watch,
     formState: { errors },
-  } = useForm<Inputs>({
-    defaultValues: {
-      name: "",
-      publicationYear: 0,
-      description: "",
-      price: 0,
-      quantity: 0,
-      languages: "",
-      authors: "",
-      genres: "",
-      isbn: 0,
-      formats: "",
-      rating: "",
-    },
-  });
+  } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
-    const res = await postBook(data);
+
+    const authorIds:number[] = data.authorsID.map(Number);
+    data.authorsID = authorIds;
+    const formatIds:number[] = data.formatsID.map(Number);
+    data.formatsID = formatIds;
+    const languagesIds:number[] = data.languagesID.map(Number);
+    data.languagesID = languagesIds;
+    const genreIds:number[] = data.genresID.map(Number);
+    data.genresID = genreIds;
+
+    const newData = JSON.stringify(data);
+
+    console.log(newData)
+
+    const res = await postBook(newData);
     console.log(res);
     setValue("name", "");
     setValue("publicationYear", 0);
     setValue("description", "");
     setValue("price", 0);
     setValue("quantity", 0);
-    setValue("languages", "");
-    setValue("authors", "");
-    setValue("genres", "");
     setValue("isbn", 0);
-    setValue("formats", "");
     setValue("rating", "");
   };
 
+
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">
-          <input {...register("name", { required: true })} />
-          <span>Format</span>
-        </label>
-        {errors.name && <span>This field is required</span>}
+      {allAuthors.length >= 1 &&
+      allFormats.length >= 1 &&
+      allGenre.length >= 1 &&
+      allLang.length >= 1 ? (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Inputs
+            register={{ ...register("name", { required: true }) }}
+            name="name"
+            errors={errors}
+          />
+          <Inputs
+            register={{ ...register("publicationYear", { required: true }) }}
+            name="publicationYear"
+            errors={errors}
+            type="number"
+          />
+          <Inputs
+            register={{ ...register("description", { required: true }) }}
+            name="description"
+            errors={errors}
+          />
+          <Inputs
+            register={{ ...register("price", { required: true }) }}
+            name="price"
+            errors={errors}
+            type="number"
+          />
+          <Inputs
+            register={{ ...register("quantity", { required: true }) }}
+            name="quantity"
+            errors={errors}
+            type="number"
+          />
+          <Inputs
+            register={{ ...register("coverImageLink", { required: true }) }}
+            name="coverImageLink"
+            errors={errors}
+            type="text"
+          />
+          <Inputs
+            register={{ ...register("isbn", { required: true }) }}
+            name="isbn"
+            errors={errors}
+            type="number"
+          />
 
-        <label htmlFor="publicationYear">
-          <input {...register("publicationYear", { required: true })} />
-          <span>publicationYear</span>
-        </label>
-        {errors.publicationYear && <span>This field is required</span>}
+          <div className={styles.selectBlock}>
+            {allAuthors ? (
+              <select {...register("authorsID", { required: true })} multiple>
+                {allAuthors.map((author) => {
+                  const authorString: string = `${author.firstName} ${author.middleName} ${author.lastName}`;
 
-        <label htmlFor="description">
-          <input {...register("description", { required: true })} />
-          <span>description</span>
-        </label>
-        {errors.description && <span>This field is required</span>}
+                  return (
+                    <CheckBox
+                      key={author.id}
+                      fullName={authorString}
+                      id={author.id}
+                    />
+                  );
+                })}
+              </select>
+            ) : (
+              <h4>Authors not exist</h4>
+            )}
+            {allFormats ? (
+              <select {...register("formatsID", { required: true })} multiple>
+                {allFormats.map((format) => {
+                  const formatString: string = `${format.format}`;
 
-        <label htmlFor="price">
-          <input {...register("price", { required: true })} />
-          <span>price</span>
-        </label>
-        {errors.price && <span>This field is required</span>}
+                  return (
+                    <CheckBox
+                      key={format.id}
+                      fullName={formatString}
+                      id={format.id}
+                    />
+                  );
+                })}
+              </select>
+            ) : (
+              <h4>Format not exist</h4>
+            )}
 
-        <label htmlFor="quantity">
-          <input {...register("quantity", { required: true })} />
-          <span>quantity</span>
-        </label>
-        {errors.quantity && <span>This field is required</span>}
+            {allGenre ? (
+              <select {...register("genresID", { required: true })} multiple>
+                {allGenre.map((genre) => {
+                  const genreString: string = `${genre.genre}`;
 
-        <label htmlFor="languages">
-          <input {...register("languages", { required: true })} />
-          <span>languages</span>
-        </label>
-        {errors.languages && <span>This field is required</span>}
+                  return (
+                    <CheckBox
+                      key={genre.id}
+                      fullName={genreString}
+                      id={genre.id}
+                    />
+                  );
+                })}
+              </select>
+            ) : (
+              <h4>Genre not exist</h4>
+            )}
 
-        <label htmlFor="authors">
-          <input {...register("authors", { required: true })} />
-          <span>authors</span>
-        </label>
-        {errors.authors && <span>This field is required</span>}
+            {allLang ? (
+              <select {...register("languagesID", { required: true })} multiple>
+                {allLang.map((lang) => {
+                  const langString: string = `${lang.language}`;
 
-        <label htmlFor="genres">
-          <input {...register("genres", { required: true })} />
-          <span>genres</span>
-        </label>
-        {errors.genres && <span>This field is required</span>}
+                  return (
+                    <CheckBox
+                      key={lang.id}
+                      fullName={langString}
+                      id={lang.id}
+                    />
+                  );
+                })}
+              </select>
+            ) : (
+              <h4>Genre not exist</h4>
+            )}
+          </div>
 
-        <label htmlFor="isbn">
-          <input {...register("isbn", { required: true })} />
-          <span>isbn</span>
-        </label>
-        {errors.isbn && <span>This field is required</span>}
-
-        <label htmlFor="formats">
-          <input {...register("formats", { required: true })} />
-          <span>formats</span>
-        </label>
-        {errors.formats && <span>This field is required</span>}
-
-        <label htmlFor="rating">
-          <input {...register("rating", { required: true })} />
-          <span>rating</span>
-        </label>
-        {errors.rating && <span>This field is required</span>}
-
-        <input type="submit" />
-      </form>
+          <button type="submit" className="submit-btn">Send</button>
+        </form>
+      ) : (
+        <h3>Form loading...</h3>
+      )}
     </>
   );
 };

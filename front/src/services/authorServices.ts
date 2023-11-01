@@ -11,7 +11,7 @@ const useAuthorServices = () => {
     const res = await request(
       `${_apiBase}authors`
     );
-    return res.data.results.map(_transformAuthor);
+    return res.map(_transformAuthor);
   };
 
   const getAuthorById = async (id: number) => {
@@ -21,7 +21,7 @@ const useAuthorServices = () => {
 
   const postAuthor = async (author: string) => {
     const res = await request(`${_apiBase}authors/add`, "POST", author);
-    return _transformAuthor(res.data);
+    return _transformAuthor(res);
   };
 
 

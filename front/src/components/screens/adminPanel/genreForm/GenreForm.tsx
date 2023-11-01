@@ -2,34 +2,54 @@ import { FC } from 'react';
 
 import { useForm, SubmitHandler } from "react-hook-form"
 
+import useGenreServices from '../../../../services/genreServices';
+
+import styles from '../adminPanel.module.scss';
+
 type Inputs = {
-  example: string
-  exampleRequired: string
+  genre: string
 }
 
 const GenreForm: FC = () => {
+
+    const {postGenre} = useGenreServices();
+
+
+
     const {
         register,
+        setValue,
         handleSubmit,
-        watch,
+        // watch,
         formState: { errors },
-      } = useForm<Inputs>()
-      const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+      } = useForm<Inputs>({
+        defaultValues: {
+          genre: "",
+        }
+      })
+      const onSubmit: SubmitHandler<Inputs> = async(data) => {
+        console.log(data);
 
-      console.log(watch("example")) // watch input value by passing the name of it
+        const newData = JSON.stringify(data)
+
+        console.log(newData)
+
+        const res = await postGenre(newData);
+        console.log(res);
+        setValue('genre', '')
+      }
+      
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/* register your input into the hook by invoking the "register" function */}
-        <input defaultValue="test" {...register("example")} />
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.genre}>
+        <label htmlFor="genre">
+            <input {...register("genre", { required: true })} />
+            <span>genre</span>
+        </label>
+        {errors.genre && <span>This field is required</span>}
 
-        {/* include validation with required or other standard HTML validation rules */}
-        <input {...register("exampleRequired", { required: true })} />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <span>This field is required</span>}
-
-        <input type="submit" />
+        <button type="submit" className="submit-btn">Send</button>
       </form>
     </>
   );

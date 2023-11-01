@@ -11,17 +11,17 @@ const useFormatServices = () => {
     const res = await request(
       `${_apiBase}formats`
     );
-    return res.data.results.map(_transformFormat);
+    return res.map(_transformFormat);
   };
 
   const getFormatById = async (id: number) => {
     const res = await request(`${_apiBase}formats/${id}`);
-    return _transformFormat(res.data);
+    return _transformFormat(res);
   };
 
   const postFormat = async (format: string) => {
-    const res = await request(`${_apiBase}format/add`, "POST", format);
-    return _transformFormat(res.data);
+    const res = await request(`${_apiBase}formats/add`, "POST", format);
+    return _transformFormat(res);
   };
 
 

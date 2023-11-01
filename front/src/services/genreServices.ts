@@ -11,17 +11,17 @@ const useGenreServices = () => {
     const res = await request(
       `${_apiBase}genres`
     );
-    return res.data.results.map(_transformGenre);
+    return res.map(_transformGenre);
   };
 
   const getGenresById = async (id: number) => {
     const res = await request(`${_apiBase}genres/${id}`);
-    return _transformGenre(res.data);
+    return _transformGenre(res);
   };
 
-  const postGenre = async (genre: IGenres) => {
+  const postGenre = async (genre: string) => {
     const res = await request(`${_apiBase}genres/add`, "POST", genre);
-    return _transformGenre(res.data);
+    return _transformGenre(res);
   };
 
 

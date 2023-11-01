@@ -1,5 +1,5 @@
 import { useHttp } from "../hooks/http.hook";
-import { IBook } from "../types/book.types";
+import { IBookGet } from "../types/book.types";
 
 const useBookServices = () => {
   const { loading, request, error, clearError, process, setProcess } =
@@ -11,21 +11,21 @@ const useBookServices = () => {
     const res = await request(
       `${_apiBase}books`
     );
-    return res.data.results.map(_transformBook);
+    return res.map(_transformBook);
   };
 
   const getBookById = async (id: number) => {
     const res = await request(`${_apiBase}books/${id}`);
-    return _transformBook(res.data);
+    return _transformBook(res);
   };
 
-  const postBook = async (book: IBook) => {
+  const postBook = async (book: string) => {
     const res = await request(`${_apiBase}books/add`, "POST", book);
-    return _transformBook(res.data);
+    return _transformBook(res);
   };
 
 
-  const _transformBook = (book: IBook) => {
+  const _transformBook = (book: IBookGet) => {
     const descr = book.description
       ? `${book.description.slice(0, 210)}...`
       : "No description for this Character";

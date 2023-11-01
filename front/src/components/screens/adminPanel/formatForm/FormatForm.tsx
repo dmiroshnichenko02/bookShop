@@ -4,6 +4,8 @@ import { useForm, SubmitHandler } from "react-hook-form"
 
 import useFormatServices from '../../../../services/formatServices';
 
+import styles from '../adminPanel.module.scss';
+
 type Inputs = {
     format: string
 }
@@ -40,14 +42,14 @@ const FormatForm: FC = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.format}>
         <label htmlFor="firstName">
             <input {...register("format", { required: true })} />
             <span>Format</span>
         </label>
         {errors.format && <span>This field is required</span>}
 
-        <input type="submit" />
+        <button type="submit" className="submit-btn">Send</button>
       </form>
     </>
   );
