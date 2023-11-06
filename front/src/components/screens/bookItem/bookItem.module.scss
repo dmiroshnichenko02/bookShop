@@ -1,0 +1,112 @@
+@import "../../../assets/styles/variables.scss";
+
+.wrapperBook {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px;
+}
+
+.imageBlock {
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.imageBlock img {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+}
+
+.bookInfo {
+  width: 100%;
+  height: 500px;
+  padding-left: 70px;
+
+  h2 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .price {
+    margin-bottom: 10px;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    display: none;
+  }
+
+  input[type="number"] {
+    border: 1px solid #000;
+    outline: none;
+    padding: 5px;
+    margin-right: 40px;
+    &:focus {
+      border: 1px solid $active-color;
+    }
+  }
+
+  form {
+    margin: 20px 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+
+  button {
+    font-size: 18px;
+    border: none;
+    outline: none;
+    width: 250px;
+    display: inline-block;
+    height: 50px;
+    background-color: #000;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+    &:after {
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: -200%;
+      width: 200% !important;
+      height: 100% !important;
+      -ms-transform: skewX(-20deg) !important;
+      transform: skewX(-20deg) !important;
+      pointer-events: none;
+      background-image: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      ) !important;
+    }
+    &:hover::after {
+      animation: shine 1.6s ease;
+    }
+  }
+
+  @keyframes shine {
+    100% {
+      left: 200%;
+    }
+  }
+
+  .moreInfo{
+    h4 {
+        margin-bottom: 20px;
+    }
+    .moreItem {
+        margin: 10px 0;
+    }
+  }
+}

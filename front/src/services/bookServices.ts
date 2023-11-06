@@ -26,21 +26,8 @@ const useBookServices = () => {
 
 
   const _transformBook = (book: IBookGet) => {
-    const descr = book.description
-      ? `${book.description.slice(0, 210)}...`
-      : "No description for this Character";
-    return {
-      id: book.id,
-      author: book.authors,
-      name: book.name,
-      description: descr,
-      publicationYear: book.publicationYear,
-      price: book.price,
-      quantity: book.quantity,
-      languages: book.languages,
-      formats: book.formats,
-      rating: book.rating,
-    };
+    book.coverImageLink = '/Image_not_available.png'
+    return book;
   };
 
 

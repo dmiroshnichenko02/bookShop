@@ -1,3 +1,8 @@
+import { IAuthor } from "./author.types";
+import { IFormat } from "./format.types";
+import { IGenres } from "./genres.types";
+import { ILang } from "./lang.types";
+
 export interface IBook {
     id?: number,
     name: string,
@@ -9,7 +14,7 @@ export interface IBook {
     languagesID: number[],
     authorsID: number[],
     genresID: number[],
-    isbn?: number,
+    isbn: number,
     formatsID: number[],
     rating: string,
     coverImageLink: string,
@@ -23,11 +28,11 @@ export interface IBookGet {
     description: string,
     price: number,
     quantity: number,
-    languages: string & number[],
-    authors: string & number[],
-    genres: string & number[],
+    languages: ILang[],
+    authors: IAuthor[],
+    genres: IGenres[],
     isbn?: number,
-    formats: string & number[],
+    formats: IFormat[],
     rating: string,
     coverImageLink: string,
 }

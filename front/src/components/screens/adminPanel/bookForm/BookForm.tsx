@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from "react";
-
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import useBookServices from "../../../../services/bookServices";
@@ -21,20 +20,18 @@ import { IGenres } from "../../../../types/genres.types";
 
 import styles from '../adminPanel.module.scss'
 
-interface Inputs extends IBook {}
+interface BookInputs extends IBook {}
 
 const BookForm: FC = () => {
+  // initial states
   const [allAuthors, setAllAuthors] = useState<IAuthor[] | []>([]);
   const [allFormats, setAllFormats] = useState<IFormat[]>([]);
   const [allLang, setAllLang] = useState<ILang[]>([]);
   const [allGenre, setAllGenre] = useState<IGenres[]>([]);
 
   const { getAllAuthors } = useAuthorServices();
-
   const { getAllFormats } = useFormatServices();
-
   const { getAllLanguages } = useLanguageServices();
-
   const { getAllGenres } = useGenreServices();
 
   // get all authors
@@ -61,13 +58,14 @@ const BookForm: FC = () => {
 
   const { postBook } = useBookServices();
 
+
   const {
     register,
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  } = useForm<BookInputs>();
+  const onSubmit: SubmitHandler<BookInputs> = async (data) => {
 
     const authorIds:number[] = data.authorsID.map(Number);
     data.authorsID = authorIds;
@@ -91,6 +89,7 @@ const BookForm: FC = () => {
     setValue("quantity", 0);
     setValue("isbn", 0);
     setValue("rating", "");
+    setValue("coverImageLink", "");
   };
 
 

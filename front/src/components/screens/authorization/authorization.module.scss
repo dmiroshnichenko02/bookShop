@@ -1,0 +1,81 @@
+@import '../../../assets/styles/variables.scss';
+
+.registration label {
+    display: inline-block;
+    width: 49%;
+    position: relative;
+    margin: 0 0.5%;
+    height: 40px;
+    margin-bottom: 30px;
+  }
+  
+  .registration input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000;
+    outline: none;
+    padding: 5px 20px;
+    font-size: 16px;
+    &:focus {
+      border: 1px solid $active-color;
+      outline: none;
+    }
+  }
+
+  .registration form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .registration label span {
+    position: absolute;
+    left: 50px;
+    top: -10px;
+    background-color: #fff;
+    text-transform: capitalize;
+    font-size: 14px;
+    padding: 0px 10px;
+  }
+  
+  .registration button[type="submit"] {
+    font-size: 18px;
+    border: none;
+    outline: none;
+    width: 250px;
+    margin: 0 auto;
+    display: block;
+    height: 50px;
+    background-color: #000;
+    color: #fff;
+    margin-top: 40px;
+    position: relative;
+    cursor: pointer;
+    &:after {
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: -200%;
+      width: 200% !important;
+      height: 100% !important;
+      -ms-transform: skewX(-20deg) !important;
+      transform: skewX(-20deg) !important;
+      pointer-events: none;
+      background-image: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      ) !important;
+    }
+    &:hover::after {
+      animation: shine 1.6s ease;
+    }
+  }
+  
+  @keyframes shine {
+    100% {
+      left: 200%;
+    }
+  }

@@ -7,7 +7,7 @@ interface Inputss extends IBook {}
 
 interface InputsProps<T> {
     register: object;
-    name: keyof T;
+    name: keyof T | string;
     errors: FieldErrors<Inputss>;
     type?: string
   }
