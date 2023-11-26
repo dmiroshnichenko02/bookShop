@@ -68,7 +68,7 @@ const Registration: FC = () => {
       const userData = {
         token: "",
         user: res.roles[0].role,
-        id: res.user_id,
+        id: res.id,
       };
       console.log(userData, "user");
       dispatch(actions.isLogin(userData));
