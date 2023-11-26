@@ -1,13 +1,13 @@
-import Layout from "./components/layout/Layout"
-import Router from "./router/Router"
+import Router from "./router/Router";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 function App() {
-
   return (
-    <Layout>
-      <Router/>
-    </Layout>
-  )
+    <Provider store={store}>
+      <Router />
+    </Provider>
+  );
 }
 
-export default App
+export default App;

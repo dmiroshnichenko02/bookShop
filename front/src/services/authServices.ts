@@ -23,6 +23,10 @@ const useUserServices = () => {
     return res;
   };
 
+  const login = async (user: string) => {
+    const res = await request(`${_apiBase}login`, "POST", user);
+    return res;
+  };
 
 
   return {
@@ -32,6 +36,7 @@ const useUserServices = () => {
     getAllUsers,
     getUserById,
     postUser,
+    login,
     process,
     setProcess,
   };

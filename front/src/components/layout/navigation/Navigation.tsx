@@ -33,7 +33,7 @@ const Navigation: FC = () => {
                         <div className={styles.sliderItem}>70% off storewide and FREE shipping - Limited time</div>
                     </Slider>
                     <div className={styles.infoBlock}>
-                        <div className={styles.wishlist}>Wishlist (0)</div>
+                        <div className={styles.wishlist}>FAQ</div>
                         <div className={styles.about}><a href="#">About Us</a></div>
                         <div className={styles.help}>Help</div>
                     </div>

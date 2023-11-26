@@ -10,6 +10,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .logoLink {
+    text-decoration: none;
+    color: #000;
+  }
 }
 
 .logotype {
@@ -121,6 +125,8 @@
 .login {
   cursor: pointer;
   position: relative;
+  color: #000;
+  text-decoration: none;
   &::before {
     position: absolute;
     content: url(../../../assets/images/user.svg);

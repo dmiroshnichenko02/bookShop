@@ -1,37 +1,66 @@
-import { FC } from "react";
-
-// import useUserServices from "../../../services/authServices";
+import { FC, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-
 import styles from "./authorization.module.scss";
 import { IReg } from "../../../types/auth.types";
 import Inputs from "../../ui/inputs/Inputs";
-
+import openEye from "../../../../public/closed.png";
+import closeEye from "../../../../public/opens.png";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import useUserServices from "../../../services/authServices";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { actions } from "../../../store/login/login.slice.ts";
 
 const Login: FC = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(false);
 
-    // const [showPassword, setShowPassword] = useState(false);
+  const { login } = useUserServices();
 
-    // const handlePassword = () => {
-    //     setShowPassword(showPassword => !showPassword);
-    // }
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    // const { getUserById } = useUserServices();
+  const schema = yup.object({
+    login: yup.string().required(),
+    password: yup.string().required(),
+  });
 
   const {
     register,
-    // setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<IReg>();
+    reset,
+  } = useForm<IReg>({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
   const onSubmit: SubmitHandler<IReg> = async (data) => {
-    const newData = JSON.stringify(data);
+    try {
+      const newData = JSON.stringify(data);
+      console.log(newData);
 
-    console.log(newData);
+      const res = await login(newData);
+      console.log(res);
+      const userData = {
+        token: res.token,
+        user: res.roles[0].role,
+        id: res.user_id,
+      };
+      console.log(userData, "user");
+      dispatch(actions.isLogin(userData));
 
-    // const res = await postUser(newData);
-    console.log(newData);
+      navigate("/");
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      setError(true);
+      reset();
+    }
+  };
+
+  const handleTogglePassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   return (
@@ -39,28 +68,67 @@ const Login: FC = () => {
       <div className={styles.registration}>
         <div className="container">
           <div className={styles.wrapper}>
-            <h2>Sign up</h2>
+            <h2 className={styles.title}>Sign in</h2>
 
-            <div className={styles.form}>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Inputs
-                  register={{ ...register("login", { required: true }) }}
-                  name="login"
-                  errors={errors}
-                />
-                <div className={styles.pass}>
-                <Inputs
-                  register={{ ...register("password", { required: true }) }}
-                  name="password"
-                  errors={errors}
-                  type="password"
-                />
-                <div className={styles.showPass}></div>
+            {error ? (
+              <div className={styles.errorBlock}>
+                <div className={styles.error}>Something went wrong</div>
+                <div
+                  className={styles.tryAgain}
+                  onClick={() => {
+                    setError(false);
+                    // Аннулирование полей формы при повторной попытке
+                    reset();
+                  }}
+                >
+                  Try again
                 </div>
+              </div>
+            ) : (
+              <div className={styles.form}>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className={`${styles.authField} ${styles.blockInput}`}>
+                    <Inputs
+                      register={{ ...register("login", { required: true }) }}
+                      name="login"
+                      errors={errors}
+                    />
+                    {errors.login && (
+                      <span className={styles.regError}>
+                        This field is required
+                      </span>
+                    )}
+                  </div>
+                  <div className={`${styles.passAuth} ${styles.password}`}>
+                    <Inputs
+                      register={{ ...register("password", { required: true }) }}
+                      name="password"
+                      errors={errors}
+                      type={showPassword ? "text" : "password"}
+                    />
 
-                <button type="submit">Sign up</button>
-              </form>
-            </div>
+                    <div className={styles.showPass}>
+                      <img
+                        src={showPassword ? closeEye : openEye}
+                        alt="Toggle Password"
+                        onClick={handleTogglePassword}
+                      />
+                    </div>
+                    {errors.password && (
+                      <span className={styles.regError}>
+                        This field is required
+                      </span>
+                    )}
+                  </div>
+
+                  <Link className={styles.already} to="/registration">
+                    <div>Don't have an account?</div>
+                  </Link>
+
+                  <button type="submit">Sign in</button>
+                </form>
+              </div>
+            )}
           </div>
         </div>
       </div>

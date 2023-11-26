@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IBook } from "../../types/book.types";
 
-const initialState = [];
+const initialState: IBook[] = [];
 
 export const favoritesSlice = createSlice({
   name: "favorites",
@@ -17,4 +18,4 @@ export const favoritesSlice = createSlice({
   },
 });
 
-export const {actions, reducer:unknown} = favoritesSlice
+export const {actions, reducer} = favoritesSlice

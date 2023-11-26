@@ -1,0 +1,51 @@
+@import "../../../assets/styles/variables.scss";
+
+.dashboard {
+  padding-top: 40px;
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    .panel {
+      background-color: #f9f9f9;
+      border-right: 2px solid #000;
+      width: 20%;
+      padding: 20px 30px;
+      height: 100%;
+      ul {
+        .active {
+            color: $active-color;
+            font-weight: 500;   
+        }
+        li {
+          font-size: 18px;
+          position: relative;
+          margin: 35px 0;
+          &:hover {
+            transform: translateX(10px);
+          }
+          span {
+            color: #fff;
+            font-size: 12px;
+            position: absolute;
+            content: "";
+            top: 50%;
+            left: -30px;
+            margin-left: 5px;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            background-color: $active-color;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+    .view {
+        width: 80%;
+        padding: 20px 30px;
+    }
+  }
+}
