@@ -13,10 +13,11 @@ import closeEye from "../../../../public/opens.png";
 
 import { useDispatch } from "react-redux";
 import { actions } from "../../../store/login/login.slice.ts";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Registration: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(false);
 
   const { postUser } = useUserServices();
 
@@ -43,26 +44,40 @@ const Registration: FC = () => {
     register,
     // setValue,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<IRegister>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
+  const navigate = useNavigate();
+
   const onSubmit: SubmitHandler<IRegister> = async (data) => {
-    const newData = {
-      login: data.login,
-      password: data.password,
-      rolesIDS: [2],
-    };
+    try {
+      const newData = {
+        login: data.login,
+        password: data.password,
+        rolesIDS: [2],
+      };
 
-    console.log(JSON.stringify(newData));
+      console.log(JSON.stringify(newData));
 
-    const res = await postUser(JSON.stringify(newData));
+      const res = await postUser(JSON.stringify(newData));
 
-    console.log(res)
-    if (res.status == "ACTIVE") {
-      dispatch(actions.isLogin("USER"));
+      const userData = {
+        token: "",
+        user: res.roles[0].role,
+        id: res.user_id,
+      };
+      console.log(userData, "user");
+      dispatch(actions.isLogin(userData));
+
+      navigate("/");
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      setError(true);
+      reset();
     }
   };
 
@@ -77,69 +92,84 @@ const Registration: FC = () => {
           <div className={styles.wrapper}>
             <h2 className={styles.title}>Sign up</h2>
 
-            <div className={styles.form}>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className={styles.blockInput}>
-                  <Inputs
-                    register={{ ...register("login", { required: true }) }}
-                    name="login"
-                    errors={errors}
-                  />
-                  {errors.login && (
-                    <span className={styles.regError}>
-                      {errors.login.message}
-                    </span>
-                  )}
+            {error ? (
+              <div className={styles.errorBlock}>
+                <div className={styles.error}>Something went wrong</div>
+                <div
+                  className={styles.tryAgain}
+                  onClick={() => {
+                    setError(false);
+                    reset();
+                  }}
+                >
+                  Try again
                 </div>
-                <div className={`${styles.password} ${styles.firstPass}`}>
-                  <Inputs
-                    register={{ ...register("password", { required: true }) }}
-                    name="password"
-                    errors={errors}
-                    type={showPassword ? "text" : "password"}
-                  />
-                  <div className={styles.showPass}>
-                    <img
-                      src={showPassword ? closeEye : openEye}
-                      alt="Toggle Password"
-                      onClick={handleTogglePassword}
+              </div>
+            ) : (
+              <div className={styles.form}>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className={styles.blockInput}>
+                    <Inputs
+                      register={{ ...register("login", { required: true }) }}
+                      name="login"
+                      errors={errors}
                     />
+                    {errors.login && (
+                      <span className={styles.regError}>
+                        {errors.login.message}
+                      </span>
+                    )}
                   </div>
-                  {errors.password && (
-                    <span className={styles.regError}>
-                      {errors.password.message}
-                    </span>
-                  )}
-                </div>
-                <div className={styles.password}>
-                  <Inputs
-                    register={{
-                      ...register("confirmPassword", { required: true }),
-                    }}
-                    name="confirm Password"
-                    errors={errors}
-                    type={showPassword ? "text" : "password"}
-                  />
-                  <div className={styles.showPass}>
-                    <img
-                      src={showPassword ? closeEye : openEye}
-                      alt="Toggle Password"
-                      onClick={handleTogglePassword}
+                  <div className={`${styles.password} ${styles.firstPass}`}>
+                    <Inputs
+                      register={{ ...register("password", { required: true }) }}
+                      name="password"
+                      errors={errors}
+                      type={showPassword ? "text" : "password"}
                     />
+                    <div className={styles.showPass}>
+                      <img
+                        src={showPassword ? closeEye : openEye}
+                        alt="Toggle Password"
+                        onClick={handleTogglePassword}
+                      />
+                    </div>
+                    {errors.password && (
+                      <span className={styles.regError}>
+                        {errors.password.message}
+                      </span>
+                    )}
                   </div>
-                  {errors.confirmPassword && (
-                    <span className={styles.regError}>
-                      {errors.confirmPassword.message}
-                    </span>
-                  )}
-                </div>
-                <Link className={styles.already} to="/login">
-                  <div>Already sign up?</div>
-                </Link>
+                  <div className={styles.password}>
+                    <Inputs
+                      register={{
+                        ...register("confirmPassword", { required: true }),
+                      }}
+                      name="confirm Password"
+                      errors={errors}
+                      type={showPassword ? "text" : "password"}
+                    />
+                    <div className={styles.showPass}>
+                      <img
+                        src={showPassword ? closeEye : openEye}
+                        alt="Toggle Password"
+                        onClick={handleTogglePassword}
+                      />
+                    </div>
+                    {errors.confirmPassword && (
+                      <span className={styles.regError}>
+                        {errors.confirmPassword.message}
+                      </span>
+                    )}
+                  </div>
+                  <Link className={styles.already} to="/login">
+                    <div>Already sign up?</div>
+                  </Link>
 
-                <button type="submit">Sign up</button>
-              </form>
-            </div>
+                  <button type="submit">Sign up</button>
+                </form>
+              </div>
+            )}
           </div>
         </div>
       </div>
