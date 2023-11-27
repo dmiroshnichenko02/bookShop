@@ -5,6 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import useLanguageServices from '../../../../services/languageServices';
 
 import styles from '../adminPanel.module.scss';
+import { RootState } from '../../../../store/store';
+import { useSelector } from 'react-redux';
 
 type Inputs = {
   language: string
@@ -13,6 +15,8 @@ type Inputs = {
 const FormatForm: FC = () => {
 
     const {postLanguage} = useLanguageServices();
+
+    const token = useSelector((state: RootState) => state.login.token)
 
     const {
         register,
@@ -31,7 +35,7 @@ const FormatForm: FC = () => {
 
         const newData = JSON.stringify(data)
 
-        const res = await postLanguage(newData);
+        const res = await postLanguage(newData, token);
         console.log(res);
         setValue('language', "")
       }

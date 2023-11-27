@@ -5,12 +5,16 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import useFormatServices from '../../../../services/formatServices';
 
 import styles from '../adminPanel.module.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../store/store';
 
 type Inputs = {
     format: string
 }
 
 const FormatForm: FC = () => {
+
+  const token = useSelector((state: RootState) => state.login.token)
 
     const {postFormat} = useFormatServices();
 
@@ -31,7 +35,7 @@ const FormatForm: FC = () => {
 
         const newData = JSON.stringify(data)
 
-        const res = await postFormat(newData);
+        const res = await postFormat(newData, token);
         console.log(res);
         setValue('format', "")
       }

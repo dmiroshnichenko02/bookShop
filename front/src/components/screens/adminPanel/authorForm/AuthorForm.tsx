@@ -3,6 +3,8 @@ import { FC } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form"
 
 import useAuthorServices from '../../../../services/authorServices';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../store/store';
 
 type Inputs = {
   firstName: string
@@ -11,6 +13,8 @@ type Inputs = {
 }
 
 const AuthorForm: FC = () => {
+
+  const token = useSelector((state: RootState) => state.login.token)
 
     const {postAuthor} = useAuthorServices();
 
@@ -36,7 +40,7 @@ const AuthorForm: FC = () => {
 
         console.log(newData)
 
-        const res = await postAuthor(newData);
+        const res = await postAuthor(newData, token);
         console.log(res);
         setValue('firstName', "");
         setValue('middleName', "");

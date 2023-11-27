@@ -19,8 +19,11 @@ const useFormatServices = () => {
     return _transformFormat(res);
   };
 
-  const postFormat = async (format: string) => {
-    const res = await request(`${_apiBase}formats/add`, "POST", format);
+  const postFormat = async (format: string, token: string) => {
+    const res = await request(`${_apiBase}formats/add`, "POST", format, {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    });
     return _transformFormat(res);
   };
 

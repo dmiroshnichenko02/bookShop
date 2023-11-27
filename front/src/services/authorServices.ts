@@ -19,8 +19,11 @@ const useAuthorServices = () => {
     return _transformAuthor(res.data);
   };
 
-  const postAuthor = async (author: string) => {
-    const res = await request(`${_apiBase}authors/add`, "POST", author);
+  const postAuthor = async (author: string, token: string) => {
+    const res = await request(`${_apiBase}authors/add`, "POST", author, {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    });
     return _transformAuthor(res);
   };
 

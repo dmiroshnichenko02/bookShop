@@ -19,8 +19,11 @@ const useGenreServices = () => {
     return _transformGenre(res);
   };
 
-  const postGenre = async (genre: string) => {
-    const res = await request(`${_apiBase}genres/add`, "POST", genre);
+  const postGenre = async (genre: string, token: string) => {
+    const res = await request(`${_apiBase}genres/add`, "POST", genre, {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    });
     return _transformGenre(res);
   };
 

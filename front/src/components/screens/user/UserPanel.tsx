@@ -7,6 +7,7 @@ import styles from "./userPanel.module.scss";
 import CartItem from "./cartItem/CartItem.tsx";
 import FavoritesItem from "./favoritesItem/FavoritesItem.tsx";
 import HistoryItem from "./historyItem/HistoryItem.tsx";
+import { Link } from "react-router-dom";
 
 const UserPanel: FC = () => {
   const [activePanel, setActivePanel] = useState("Cart");
@@ -46,6 +47,16 @@ const UserPanel: FC = () => {
                       : favorites.length}
                   </span>
                 </li>
+                {user === "ADMIN" ? (
+                  <li
+                    className={`${styles.panelItem} ${
+                      activePanel === "Admin panel" && styles.active
+                    }`}
+                    onClick={() => setActivePanel("Admin panel")}
+                  >
+                    <Link to="/admin">Admin panel</Link>
+                  </li>
+                ) : null}
                 <li
                   className={`${styles.panelItem} ${
                     activePanel === "Order History" && styles.active
@@ -56,7 +67,9 @@ const UserPanel: FC = () => {
                 </li>
                 <li
                   className={styles.panelItem}
-                  onClick={() => dispatch(actions.isLogin(""))}
+                  onClick={() =>
+                    dispatch(actions.isLogin({ token: "", user: "", id: 0 }))
+                  }
                 >
                   Logout
                 </li>

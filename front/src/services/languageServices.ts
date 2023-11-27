@@ -19,8 +19,11 @@ const useLanguageServices = () => {
     return _transformLanguage(res);
   };
 
-  const postLanguage = async (language: string) => {
-    const res = await request(`${_apiBase}languages/add`, "POST", language);
+  const postLanguage = async (language: string, token: string) => {
+    const res = await request(`${_apiBase}languages/add`, "POST", language, {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    });
     return _transformLanguage(res);
   };
 

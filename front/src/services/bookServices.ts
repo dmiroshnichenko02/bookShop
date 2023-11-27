@@ -19,8 +19,11 @@ const useBookServices = () => {
     return _transformBook(res);
   };
 
-  const postBook = async (book: string) => {
-    const res = await request(`${_apiBase}books/add`, "POST", book);
+  const postBook = async (book: string, token: string) => {
+    const res = await request(`${_apiBase}books/add`, "POST", book, {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    });
     return _transformBook(res);
   };
 

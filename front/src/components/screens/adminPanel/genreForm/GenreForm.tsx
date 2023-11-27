@@ -5,6 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import useGenreServices from '../../../../services/genreServices';
 
 import styles from '../adminPanel.module.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../store/store';
 
 type Inputs = {
   genre: string
@@ -13,6 +15,8 @@ type Inputs = {
 const GenreForm: FC = () => {
 
     const {postGenre} = useGenreServices();
+
+    const token = useSelector((state: RootState) => state.login.token)
 
 
 
@@ -34,7 +38,7 @@ const GenreForm: FC = () => {
 
         console.log(newData)
 
-        const res = await postGenre(newData);
+        const res = await postGenre(newData, token);
         console.log(res);
         setValue('genre', '')
       }

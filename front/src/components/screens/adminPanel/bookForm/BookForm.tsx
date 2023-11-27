@@ -19,6 +19,8 @@ import { ILang } from "../../../../types/lang.types";
 import { IGenres } from "../../../../types/genres.types";
 
 import styles from '../adminPanel.module.scss'
+import { RootState } from "../../../../store/store";
+import { useSelector } from "react-redux";
 
 interface BookInputs extends IBook {}
 
@@ -58,6 +60,8 @@ const BookForm: FC = () => {
 
   const { postBook } = useBookServices();
 
+  const token = useSelector((state: RootState) => state.login.token)
+
 
   const {
     register,
@@ -80,7 +84,7 @@ const BookForm: FC = () => {
 
     console.log(newData)
 
-    const res = await postBook(newData);
+    const res = await postBook(newData, token);
     console.log(res);
     setValue("name", "");
     setValue("publicationYear", 0);
