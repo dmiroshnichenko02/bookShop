@@ -11,6 +11,7 @@ import useUserServices from "../../../services/authServices";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actions } from "../../../store/login/login.slice.ts";
+import Cookies from "js-cookie";
 
 const Login: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -48,7 +49,12 @@ const Login: FC = () => {
         user: res.roles[0].role,
         id: res.user_id,
       };
-      console.log(userData, "user");
+      if(res.roles[0].role === "ADMIN") {
+        Cookies.set("authCookieAdminToken", res.token);
+      }
+      Cookies.set("authCookie", "auth");
+      Cookies.set("authCookieId", res.user_id.toString());
+
       dispatch(actions.isLogin(userData));
 
       navigate("/");

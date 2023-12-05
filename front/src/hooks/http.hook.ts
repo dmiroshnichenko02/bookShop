@@ -22,6 +22,7 @@ export const useHttp = () => {
 
       try {
         const headersInit: HeadersInit = {
+          mode : "no-cors",
           "Content-Type": headers["Content-Type"],
         };
 

@@ -8,6 +8,7 @@ import CartItem from "./cartItem/CartItem.tsx";
 import FavoritesItem from "./favoritesItem/FavoritesItem.tsx";
 import HistoryItem from "./historyItem/HistoryItem.tsx";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const UserPanel: FC = () => {
   const [activePanel, setActivePanel] = useState("Cart");
@@ -68,7 +69,11 @@ const UserPanel: FC = () => {
                 <li
                   className={styles.panelItem}
                   onClick={() =>
-                    dispatch(actions.isLogin({ token: "", user: "", id: 0 }))
+                    {
+                      Cookies.remove("authCookie");
+                      Cookies.remove("authCookieId");
+                      dispatch(actions.isLogin({ token: "", user: "", id: 0 }))
+                    }
                   }
                 >
                   Logout

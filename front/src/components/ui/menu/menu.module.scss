@@ -3,6 +3,9 @@
 .menu {
   min-height: 100px;
   overflow: hidden;
+  a {
+    text-decoration: none;
+  }
 }
 
 .wrapper {
@@ -28,6 +31,8 @@
   }
 }
 
+
+
 .category {
   width: 145px;
   .catItem {
@@ -47,13 +52,13 @@
       top: 50%;
       transform: translateY(-50%);
     }
-    &::after {
-      position: absolute;
-      content: url(../../../assets/images/cat-arrow.svg);
-      right: 50px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+    // &::after {
+    //   position: absolute;
+    //   content: url(../../../assets/images/cat-arrow.svg);
+    //   right: 50px;
+    //   top: 50%;
+    //   transform: translateY(-50%);
+    // }
   }
 }
 

@@ -1,0 +1,41 @@
+.bookItem {
+    width: 350px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    .img {
+        width: 100px;
+        height: 100%;
+        padding-right: 20px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    .info {
+        width: 65%;
+        h2 {
+            margin-bottom: 10px;
+            line-height: 25px;
+            font-size: 18px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 20px;
+        }
+        .btn {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+}

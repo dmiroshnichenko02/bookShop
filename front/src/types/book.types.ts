@@ -4,6 +4,7 @@ import { IGenres } from "./genres.types";
 import { ILang } from "./lang.types";
 
 export interface IBook {
+    map(arg0: (book: IBook) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode;
     id?: number,
     name: string,
     image?: string,

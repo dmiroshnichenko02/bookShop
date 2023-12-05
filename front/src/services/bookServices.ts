@@ -24,7 +24,7 @@ const useBookServices = () => {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
     });
-    return _transformBook(res);
+    return res;
   };
 
 

@@ -14,6 +14,7 @@ import closeEye from "../../../../public/opens.png";
 import { useDispatch } from "react-redux";
 import { actions } from "../../../store/login/login.slice.ts";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Registration: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -71,6 +72,8 @@ const Registration: FC = () => {
         id: res.id,
       };
       console.log(userData, "user");
+
+      Cookies.set("authCookie", "auth");
       dispatch(actions.isLogin(userData));
 
       navigate("/");

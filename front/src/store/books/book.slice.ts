@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IBook } from "../../types/book.types";
+import { IBookGet } from "../../types/book.types";
 
-const initialState: IBook[] = [];
+const initialState: IBookGet[] = [];
 
 export const bookSlice = createSlice({
   name: "books",
@@ -9,7 +9,7 @@ export const bookSlice = createSlice({
   reducers: {
 
     getAllBooks: (state, {payload: books}) => {
-        state.push(books);
+      return books;
     },
   },
 });

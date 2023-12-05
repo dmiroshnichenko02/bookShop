@@ -12,10 +12,14 @@ import { RootState } from "../store/store";
 import Layout from "../components/layout/Layout";
 import Help from "../components/screens/help/Help";
 import AboutUs from "../components/screens/about-us/AboutUs";
+import Catalog from "../components/screens/catalog/Catalog";
 // import Faq from "../components/screens/faq/Faq";
+import Cookies from "js-cookie";
+
 
 const Router: FC = () => {
   const user = useSelector((state: RootState) => state.login.user);
+  const isAuth = Cookies.get("authCookie");
 
   console.log(user)
 
@@ -26,12 +30,13 @@ const Router: FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="/catalog" element={<Catalog />} />
           <Route path="/books/:id" element={<BookItem />} />
           <Route path="/help" element={<Help />} />
           <Route path="/about-us" element={<AboutUs />} />
           {/* <Route path="/faq" element={<Faq />} /> */}
           <Route path="/admin" element={<AdminPanel />} />
-          <Route path="/user" element={user == "USER" || user == "ADMIN" ? <UserPanel /> : <Navigate to="/login" />} />
+          <Route path="/user" element={isAuth==="auth" && (user == "USER" || user == "ADMIN") ? <UserPanel /> : <Navigate to="/login" />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Layout>

@@ -18,7 +18,7 @@ import { IFormat } from "../../../../types/format.types";
 import { ILang } from "../../../../types/lang.types";
 import { IGenres } from "../../../../types/genres.types";
 
-import styles from '../adminPanel.module.scss'
+import styles from "../adminPanel.module.scss";
 import { RootState } from "../../../../store/store";
 import { useSelector } from "react-redux";
 
@@ -56,12 +56,12 @@ const BookForm: FC = () => {
     bdFetch(getAllGenres, setAllGenre);
   }, []);
 
-  console.log(allAuthors, allFormats, allLang, allGenre);
 
   const { postBook } = useBookServices();
 
-  const token = useSelector((state: RootState) => state.login.token)
+  const token = useSelector((state: RootState) => state.login.token);
 
+  console.log(token);
 
   const {
     register,
@@ -70,32 +70,44 @@ const BookForm: FC = () => {
     formState: { errors },
   } = useForm<BookInputs>();
   const onSubmit: SubmitHandler<BookInputs> = async (data) => {
+    try {
+      const authorIds: number[] = data.authorsID.map(Number);
+      data.authorsID = authorIds;
+      const formatIds: number[] = data.formatsID.map(Number);
+      data.formatsID = formatIds;
+      const languagesIds: number[] = data.languagesID.map(Number);
+      data.languagesID = languagesIds;
+      const genreIds: number[] = data.genresID.map(Number);
+      data.genresID = genreIds;
 
-    const authorIds:number[] = data.authorsID.map(Number);
-    data.authorsID = authorIds;
-    const formatIds:number[] = data.formatsID.map(Number);
-    data.formatsID = formatIds;
-    const languagesIds:number[] = data.languagesID.map(Number);
-    data.languagesID = languagesIds;
-    const genreIds:number[] = data.genresID.map(Number);
-    data.genresID = genreIds;
+      const dataNew = {
+        ...data,
+        authorsID: authorIds,
+        formatsID: formatIds,
+        languagesID: languagesIds,
+        genresID: genreIds,
+      };
 
-    const newData = JSON.stringify(data);
+      const newData = JSON.stringify(dataNew);
 
-    console.log(newData)
+      console.log(newData)
 
-    const res = await postBook(newData, token);
-    console.log(res);
-    setValue("name", "");
-    setValue("publicationYear", 0);
-    setValue("description", "");
-    setValue("price", 0);
-    setValue("quantity", 0);
-    setValue("isbn", 0);
-    setValue("rating", "");
-    setValue("coverImageLink", "");
+
+      const res = await postBook(newData, token);
+      console.log(res)
+
+      setValue("name", "");
+      setValue("publicationYear", 0);
+      setValue("description", "");
+      setValue("price", 0);
+      setValue("quantity", 0);
+      setValue("isbn", 0);
+      setValue("rating", "");
+      setValue("coverImageLink", "");
+    } catch (error) {
+      console.error("Error submitting book:", error);
+    }
   };
-
 
   return (
     <>
@@ -218,7 +230,9 @@ const BookForm: FC = () => {
             )}
           </div>
 
-          <button type="submit" className="submit-btn">Send</button>
+          <button type="submit" className="submit-btn">
+            Send
+          </button>
         </form>
       ) : (
         <h3>Form loading...</h3>

@@ -19,7 +19,6 @@ const AuthorForm: FC = () => {
     const {postAuthor} = useAuthorServices();
 
 
-
     const {
         register,
         setValue,

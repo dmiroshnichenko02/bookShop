@@ -6,6 +6,7 @@ import { RootState } from "../../../store/store";
 import styles from "./menu.module.scss";
 import logo from "../../../assets/images/LOGO-SHAPE.png";
 import searchImg from "../../../assets/images/search.svg";
+import Cookies from "js-cookie";
 
 // interface IMenu {
 //   user: string;
@@ -14,8 +15,9 @@ import searchImg from "../../../assets/images/search.svg";
 const Menu: FC = () => {
   const [search, setSearch] = useState("");
   const user = useSelector((state: RootState) => state.login.user);
+  const authCookie = Cookies.get("authCookie");
+  console.log(authCookie)
 
-  console.log(user)
 
   return (
     <>
@@ -30,7 +32,7 @@ const Menu: FC = () => {
             </Link>
 
             <div className={styles.category}>
-              <div className={styles.catItem}>Categories</div>
+              <Link to="/catalog"><div className={styles.catItem}>Catalog</div></Link>
             </div>
 
             <div className={styles.search}>
@@ -50,7 +52,7 @@ const Menu: FC = () => {
             </div>
 
             <div className={styles.info}>
-              {user === "" ? (
+              {user === "" && authCookie !== "auth" ? (
                 <Link to="/login" className={styles.login}>
                   Login/Register
                 </Link>
