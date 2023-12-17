@@ -31,8 +31,6 @@
   }
 }
 
-
-
 .category {
   width: 145px;
   .catItem {
@@ -249,6 +247,7 @@
   }
   .search {
     width: 350px;
+    position: relative;
   }
 
   .category {
@@ -258,6 +257,88 @@
     }
   }
 }
+
+.searchResultBlock {
+  display: none;
+  width: 765px;
+  margin: 0 auto;
+  position: absolute;
+  left: 52%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  min-height: 100px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 15px;
+  box-shadow: #000 0px 0px 10px;
+}
+
+.wrapperSearchBlock {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.infoSearch {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  color: #000;
+}
+
+.priceSearch {
+  color: $active-color;
+}
+
+.searchResult {
+  height: 100px;
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+  img {
+    object-fit: cover;
+    width: 90px;
+    height: 100px;
+  }
+  .btn {
+    font-size: 18px;
+    border: none;
+    outline: none;
+    width: 150px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: #000;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+    &:after {
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: -200%;
+      width: 200% !important;
+      height: 100% !important;
+      -ms-transform: skewX(-20deg) !important;
+      transform: skewX(-20deg) !important;
+      pointer-events: none;
+      background-image: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      ) !important;
+    }
+    &:hover::after {
+      animation: shine 1.6s ease;
+    }
+    margin-left: auto;
+    margin-right: 40px;
+  }
+}
+
 @media (max-width: 1170px) {
   .menu {
     display: none;
@@ -276,5 +357,11 @@
 @media (max-width: 568px) {
   header {
     min-height: 60px;
+  }
+}
+
+@keyframes shine {
+  100% {
+    left: 200%;
   }
 }

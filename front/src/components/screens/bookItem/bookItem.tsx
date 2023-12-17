@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 
 import useBookServices from "../../../services/bookServices";
 import { IBookGet } from "../../../types/book.types";
+import { useDispatch } from "react-redux";
+import {action} from '../../../store/cart/cart.slice';
 
 const BookItem: FC<PropsWithChildren<unknown>> = () => {
   const [book, setBook] = useState<IBookGet>();
@@ -24,6 +26,12 @@ const BookItem: FC<PropsWithChildren<unknown>> = () => {
       fetchedBook();
     }
   }, [id]);
+
+  const dispatch = useDispatch();
+
+  const addToCart = () => {
+    dispatch(action.addToCart(book));
+  }
 
   return (
     <div className={styles.book}>
@@ -57,10 +65,10 @@ const BookItem: FC<PropsWithChildren<unknown>> = () => {
               <div className={styles.buyBlock}>
                 <div>Available quantity: {book.quantity}</div>
                 <form>
-                  <label htmlFor="number">
+                  {/* <label htmlFor="number">
                     <span>Quantity: </span>
                     <input type="number" name="number"/>
-                  </label>
+                  </label> */}
                   <button>Add to Cart</button>
                 </form>
               </div>

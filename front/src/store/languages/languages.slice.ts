@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 import { ILang } from "../../types/lang.types";
 
@@ -8,7 +9,7 @@ export const languagesSlice = createSlice({
   initialState,
   reducers: {
 
-    getAllLanguages: (state, {payload: languages}) => {
+    getAllLanguages: (_state, {payload: languages}) => {
         return languages;
     },
   },

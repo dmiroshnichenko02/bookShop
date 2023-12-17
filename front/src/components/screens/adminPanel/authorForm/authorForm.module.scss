@@ -1,0 +1,63 @@
+.successBlock, .erorsBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h4 {
+    font-size: 26px;
+  }
+  .author {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 30px;
+    h4 {
+      font-size: 20px;
+    }
+    span {
+      font-weight: 400;
+    }
+  }
+  .addAnother, .btnErrors {
+    font-size: 18px;
+    border: none;
+    outline: none;
+    width: 250px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: #000;
+    color: #fff;
+    margin-top: 40px;
+    position: relative;
+    cursor: pointer;
+    &:after {
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: -200%;
+      width: 200% !important;
+      height: 100% !important;
+      -ms-transform: skewX(-20deg) !important;
+      transform: skewX(-20deg) !important;
+      pointer-events: none;
+      background-image: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      ) !important;
+    }
+    &:hover::after {
+      animation: shine 1.6s ease;
+    }
+  }
+}
+
+@keyframes shine {
+  100% {
+    left: 200%;
+  }
+}

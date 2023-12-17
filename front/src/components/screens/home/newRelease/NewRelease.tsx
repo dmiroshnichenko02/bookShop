@@ -3,12 +3,13 @@ import Slider from "react-slick";
 
 import styles from "./newRelease.module.scss";
 
-import bookFirst from "../../../../assets/images/books-3.png";
-import book2 from "../../../../assets/images/books-4.png";
-import book3 from "../../../../assets/images/books-2.png";
-import book4 from "../../../../assets/images/books-1.png";
+import { RootState } from "../../../../store/store";
+import { useSelector } from "react-redux";
 
 const NewRelease: FC = () => {
+
+  const books = useSelector((state: RootState) => state.books);
+
   const settings = {
     infinity: true,
     speed: 500,
@@ -56,6 +57,8 @@ const NewRelease: FC = () => {
       },
     ],
   };
+  
+  console.log(books);
 
   return (
     <>
@@ -64,43 +67,14 @@ const NewRelease: FC = () => {
           <h2 className={styles.title}>New Arrivals</h2>
           <div className={styles.slider}>
             <Slider {...settings}>
-              <div className={styles.item}>
-                <img src={bookFirst} alt="book" />
-                <h3 className={styles.author}>By Arthur Gonzalez</h3>
-                <p className={styles.bookTitle}>The Story of Success</p>
-                <div className={styles.price}>$78.00</div>
-              </div>
-              <div className={styles.item}>
-                <img src={book2} alt="book" />
-                <h3 className={styles.author}>By Arthur Gonzalez</h3>
-                <p className={styles.bookTitle}>The Story of Success</p>
-                <div className={styles.price}>$78.00</div>
-              </div>
-              <div className={styles.item}>
-                <img src={book4} alt="book" />
-                <h3 className={styles.author}>By Arthur Gonzalez</h3>
-                <p className={styles.bookTitle}>The Story of Success</p>
-                <div className={styles.price}>$78.00</div>
-              </div>
-              <div className={styles.item}>
-                <img src={book3} alt="book" />
-                <h3 className={styles.author}>By Arthur Gonzalez</h3>
-                <p className={styles.bookTitle}>The Story of Success</p>
-                <div className={styles.price}>$78.00</div>
-              </div>
-              <div className={styles.item}>
-                <img src={bookFirst} alt="book" />
-                <h3 className={styles.author}>By Arthur Gonzalez</h3>
-                <p className={styles.bookTitle}>The Story of Success</p>
-                <div className={styles.price}>$78.00</div>
-              </div>
-              <div className={styles.item}>
-                <img src={book2} alt="book" />
-                <h3 className={styles.author}>By Arthur Gonzalez</h3>
-                <p className={styles.bookTitle}>The Story of Success</p>
-                <div className={styles.price}>$78.00</div>
-              </div>
-              
+              {books.map((book) => (
+                <div className={styles.item}>
+                  <img src={book.coverImageLink} alt="book" />
+                  <h3 className={styles.author}>{`By ${book.authors[0].firstName} ${book.authors[0].lastName}`}</h3>
+                  <p className={styles.bookTitle}>{book.name.length > 15 ? book.name.slice(0, 15) + '...' : book.name}</p>
+                  <div className={styles.price}>${book.price}</div>
+                </div>
+              ))}  
             </Slider>
           </div>
         </div>

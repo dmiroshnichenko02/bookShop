@@ -3,19 +3,19 @@ import Slider from "react-slick";
 
 import styles from "./categories.module.scss";
 
-import bookImg from "../../../../assets/images/books-1.png";
-import book2 from "../../../../assets/images/books-2.png";
-import book3 from "../../../../assets/images/books-3.png";
-import book4 from "../../../../assets/images/books-4.png";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 
 const Categories: FC = () => {
+  const genres = useSelector((state: RootState) => state.genres);
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 6,
     slidesToScroll: 1,
-    variableWidth: true,
+    // variableWidth: true,
     arrows: true,
     responsive: [
       {
@@ -46,6 +46,8 @@ const Categories: FC = () => {
     ],
   };
 
+  console.log(genres);
+
   return (
     <>
       <section id="catalog" className={styles.catalog}>
@@ -53,42 +55,11 @@ const Categories: FC = () => {
           <div className={styles.wrapper}>
             <h2 className={styles.title}>Shop by Category</h2>
             <Slider {...settings} className={styles.slider}>
-              <div className={styles.sliderItem} style={{ width: "240px" }}>
-                <div className={styles.img}>
-                  <img src={bookImg} alt="book" />
+              {genres.map((genre) => (
+                <div className={styles.sliderItem} style={{ width: "212px" }}>
+                  <h3 className={styles.bookTitle}>{genre.genre}</h3>
                 </div>
-                <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
-              </div>
-              <div className={styles.sliderItem} style={{ width: "240px" }}>
-                <div className={styles.img}>
-                  <img src={book2} alt="book" />
-                </div>
-                <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
-              </div>
-              <div className={styles.sliderItem} style={{ width: "240px" }}>
-                <div className={styles.img}>
-                  <img src={book3} alt="book" />
-                </div>
-                <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
-              </div>
-              <div className={styles.sliderItem} style={{ width: "240px" }}>
-                <div className={styles.img}>
-                  <img src={book4} alt="book" />
-                </div>
-                <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
-              </div>
-              <div className={styles.sliderItem} style={{ width: "240px" }}>
-                <div className={styles.img}>
-                  <img src={book2} alt="book" />
-                </div>
-                <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
-              </div>
-              <div className={styles.sliderItem} style={{ width: "240px" }}>
-                <div className={styles.img}>
-                  <img src={book3} alt="book" />
-                </div>
-                <h3 className={styles.bookTitle}>Suspense & Thriller</h3>
-              </div>
+              ))}
             </Slider>
           </div>
         </div>

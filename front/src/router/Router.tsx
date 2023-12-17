@@ -36,7 +36,7 @@ const Router: FC = () => {
           <Route path="/about-us" element={<AboutUs />} />
           {/* <Route path="/faq" element={<Faq />} /> */}
           <Route path="/admin" element={<AdminPanel />} />
-          <Route path="/user" element={isAuth==="auth" && (user == "USER" || user == "ADMIN") ? <UserPanel /> : <Navigate to="/login" />} />
+          <Route path="/user" element={isAuth==="auth" ? <UserPanel /> : <Navigate to="/login" />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Layout>

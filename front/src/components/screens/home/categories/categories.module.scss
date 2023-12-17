@@ -1,7 +1,7 @@
 @import "../../../../assets/styles/variables.scss";
 
 .catalog {
-  min-height: 650px;
+  min-height: 450px;
   padding-top: 60px;
   background-color: #fff;
 }
@@ -21,6 +21,12 @@
 
 .sliderItem {
   width: 212px;
+  height: 212px;
+  border-radius: 50%;
+  background-color: #f0ebd5;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   &:hover {
     transform: scale(1.01);
@@ -33,7 +39,7 @@
     width: 212px;
     height: 212px;
     border-radius: 50%;
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: end;
     background-color: #f0ebd5;
@@ -46,23 +52,19 @@
 
   .bookTitle {
     color: $nav-color;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 30px;
     text-align: center;
-    padding-right: 20px;
   }
 }
 
 @media (max-width: 1340px) {
-
 }
 
 @media (max-width: 1170px) {
-
 }
 @media (max-width: 991px) {
-
 }
 @media (max-width: 768px) {
   .sliderItem {
@@ -71,14 +73,12 @@
     .img {
       margin: 0 auto;
     }
-    .bookTitle{
+    .bookTitle {
       padding: 0;
       text-align: center;
       margin-top: 10px;
     }
   }
-
 }
 @media (max-width: 568px) {
-
 }

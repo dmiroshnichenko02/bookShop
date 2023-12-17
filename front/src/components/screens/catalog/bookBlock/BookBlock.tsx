@@ -14,7 +14,7 @@ const BookBlock: FC<PropsWithChildren<IBook | any>> = ({book}) => {
             <div className={styles.info}>
                 <h2>{book.name}</h2>
                 <p>{book.description.length > 30 ? book.description.slice(0, 30) + '...' : book.description}</p>
-                <Link to={`/books/${book.id}`}><div className={styles.btn}>Go to book</div></Link>
+                <Link className={styles.link} to={`/books/${book.id}`}><div className={styles.btn}>Go to book</div></Link>
             </div>
         </div>
     </>

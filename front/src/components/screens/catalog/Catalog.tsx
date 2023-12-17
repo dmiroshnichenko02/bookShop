@@ -1,5 +1,6 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useEffect, useState } from "react";
+import { FC, SetStateAction, useEffect, useState } from "react";
 
 import styles from "./catalog.module.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,17 +16,16 @@ import { IBookGet } from "../../../types/book.types";
 import useAuthorServices from "../../../services/authorServices";
 import useLanguageServices from "../../../services/languageServices";
 import useGenreServices from "../../../services/genreServices";
+import { IAuthor } from "../../../types/author.types.js";
+import { ILang } from "../../../types/lang.types.js";
+import { IGenres } from "../../../types/genres.types.js";
 
 const Catalog: FC = () => {
   //filters
-  const [selectedAuthors, setSelectedAuthors] = useState<string[] | string>([]);
-  const [selectedLanguages, setSelectedLanguages] = useState<string[] | string>(
-    []
-  );
-  const [selectedGenres, setSelectedGenres] = useState<string[] | string>([]);
-  const [filteredBooks, setFilteredBooks] = useState<IBookGet[] | null>(null);
 
-  
+  const [filteredBooks, setFilteredBooks] = useState<IBookGet[]>([]);
+
+  const [allSelected, setAllSelected] = useState<string[] | any>([]);
 
   console.log(filteredBooks);
 
@@ -60,34 +60,49 @@ const Catalog: FC = () => {
 
   const books = useSelector((state: RootState) => state.books);
 
-  const applyFilters = () => {
-    const newFilteredBooks = books.filter((book: IBookGet) => {
-      const isAuthorSelected =
-        selectedAuthors.length > 0 &&
-        book.authors.some((author) => {
-          const authorName = `${author.firstName} ${author.middleName} ${author.lastName}`;
-          return selectedAuthors.includes(authorName);
+  const filters = (data: (IAuthor | ILang | IGenres)[]) => {
+    const fill: SetStateAction<IBookGet[]> = [];
+
+    books.filter((book) => {
+      data.forEach((item: any) => {
+        book.languages.forEach((lang: any) => {
+          console.log(lang, item);
+          if (lang.language.includes(item)) {
+            console.log(23);
+            if (!fill.includes(book)) {
+              fill.push(book);
+            }
+          }
         });
+        book.genres.forEach((genre: any) => {
+          if (genre.genre.includes(item)) {
+            if (!fill.includes(book)) {
+              fill.push(book);
+            }
+          }
+        });
+        book.authors.forEach((author: any) => {
+          const splitedName = item.split(" ");
 
-      const selectedLanguage = selectedLanguages[0];
-      const isLanguageSelected =
-        selectedLanguage &&
-        book.languages.some(
-          (language) => language.language === selectedLanguage
-        );
-
-      const isGenreSelected =
-        selectedGenres.length > 0 && Array.isArray(selectedGenres)
-          ? selectedGenres.some((selectedGenre) =>
-              book.genres.some((bookGenre) => selectedGenre === bookGenre.genre)
-            )
-          : selectedGenres === book.genres[0]?.genre;
-
-      return isAuthorSelected && isLanguageSelected && isGenreSelected;
+          if (splitedName) {
+            if (
+              author.firstName.includes(splitedName[0]) ||
+              author.middleName.includes(
+                splitedName[1] || author.lastName.includes(splitedName[2])
+              )
+            ) {
+              if (!fill.includes(book)) {
+                fill.push(book);
+              }
+            }
+          }
+        });
+      });
     });
-
-    setFilteredBooks(newFilteredBooks);
+    setFilteredBooks(fill);
   };
+
+  console.log(allSelected);
 
   return (
     <>
@@ -102,14 +117,18 @@ const Catalog: FC = () => {
                   <ul>
                     {authors ? (
                       authors.map((author, index) => {
+                        const authorFullName = `${author.firstName} ${author.middleName} ${author.lastName}`;
+                        const isSelected = allSelected.includes(authorFullName);
+
                         return (
-                          <li 
-                            onClick={() =>
-                              setSelectedAuthors([
-                                ...selectedAuthors,
+                          <li
+                            className={isSelected ? styles.selected : ""}
+                            onClick={() => {
+                              setAllSelected([
+                                ...allSelected,
                                 `${author.firstName} ${author.middleName} ${author.lastName}`,
-                              ])
-                            }
+                              ]);
+                            }}
                             key={index}
                           >{`${author.firstName} ${author.lastName}`}</li>
                         );
@@ -124,15 +143,14 @@ const Catalog: FC = () => {
                   <ul>
                     {langs ? (
                       langs.map((lang, index) => {
+                        const isSelected = allSelected.includes(lang.language);
                         return (
                           <li
+                            className={isSelected ? styles.selected : ""}
                             key={index}
-                            onClick={() =>
-                              setSelectedLanguages([
-                                ...selectedLanguages,
-                                lang.language,
-                              ])
-                            }
+                            onClick={() => {
+                              setAllSelected([...allSelected, lang.language]);
+                            }}
                           >
                             {lang.language}
                           </li>
@@ -148,15 +166,14 @@ const Catalog: FC = () => {
                   <ul>
                     {genres ? (
                       genres.map((genre, index) => {
+                        const isSelected = allSelected.includes(genre.genre);
                         return (
                           <li
                             key={index}
-                            onClick={() =>
-                              setSelectedGenres([
-                                ...selectedGenres,
-                                genre.genre,
-                              ])
-                            }
+                            className={isSelected ? styles.selected : ""}
+                            onClick={() => {
+                              setAllSelected([...allSelected, genre.genre]);
+                            }}
                           >
                             {genre.genre}
                           </li>
@@ -168,7 +185,12 @@ const Catalog: FC = () => {
                   </ul>
                 </div>
               </div>
-              <div className={styles.btn} onClick={applyFilters}>
+              <div
+                className={styles.btn}
+                onClick={() => {
+                  filters(allSelected);
+                }}
+              >
                 Apply Filters
               </div>
             </aside>

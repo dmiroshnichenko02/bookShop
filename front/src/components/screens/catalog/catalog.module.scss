@@ -21,6 +21,10 @@
   }
 }
 
+.selected {
+  color: $active-color;
+}
+
 .wrapp {
   display: flex;
 }

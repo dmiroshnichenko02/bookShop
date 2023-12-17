@@ -8,7 +8,7 @@ export const formatSlice = createSlice({
   initialState,
   reducers: {
 
-    getAllFormats: (state, {payload: formats}) => {
+    getAllFormats: (_state, {payload: formats}) => {
         return formats;
     },
   },

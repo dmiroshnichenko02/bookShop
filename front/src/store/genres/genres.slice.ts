@@ -8,7 +8,7 @@ export const genresSlice = createSlice({
   initialState,
   reducers: {
 
-    getAllGenres: (state, {payload: genres}) => {
+    getAllGenres: (_state, {payload: genres}) => {
         return genres;
     },
   },

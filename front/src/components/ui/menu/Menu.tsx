@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
@@ -7,6 +8,7 @@ import styles from "./menu.module.scss";
 import logo from "../../../assets/images/LOGO-SHAPE.png";
 import searchImg from "../../../assets/images/search.svg";
 import Cookies from "js-cookie";
+import { IBook, IBookGet } from "../../../types/book.types";
 
 // interface IMenu {
 //   user: string;
@@ -14,10 +16,34 @@ import Cookies from "js-cookie";
 
 const Menu: FC = () => {
   const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState<IBook[] | any>([]);
   const user = useSelector((state: RootState) => state.login.user);
   const authCookie = Cookies.get("authCookie");
-  console.log(authCookie)
+  console.log(authCookie);
 
+  const books = useSelector((state: RootState) => state.books);
+
+  const viewSearchResult = () => {
+    if (search !== "") {
+      return books.filter((book) => {
+        return (
+          book.name.toLowerCase().includes(search.toLowerCase()) ||
+          book.authors.forEach((author) => {
+            author.firstName.toLowerCase().includes(search.toLowerCase()) ||
+              author.middleName.toLowerCase().includes(search.toLowerCase()) ||
+              author.lastName.toLowerCase().includes(search.toLowerCase());
+          }) ||
+          book?.isbn?.toString().includes(search)
+        );
+      });
+    }
+    return [];
+  };
+
+  useEffect(() => {
+    setShowSearch(viewSearchResult());
+    console.log(viewSearchResult());
+  }, [search]);
 
   return (
     <>
@@ -32,7 +58,9 @@ const Menu: FC = () => {
             </Link>
 
             <div className={styles.category}>
-              <Link to="/catalog"><div className={styles.catItem}>Catalog</div></Link>
+              <Link to="/catalog">
+                <div className={styles.catItem}>Catalog</div>
+              </Link>
             </div>
 
             <div className={styles.search}>
@@ -49,6 +77,32 @@ const Menu: FC = () => {
                   </button>
                 </label>
               </form>
+              <div
+                className={styles.searchResultBlock}
+                style={{ display: showSearch.length > 0 ? "block" : "none" }}
+              >
+                <div className={styles.wrapperSearchBlock}>
+                  {showSearch.length > 0
+                    ? showSearch.map((book: IBookGet) => (
+                        <Link
+                          to={`/books/${book.id}`}
+                          onClick={() => {
+                            setSearch("");
+                          }}
+                          className={styles.searchResult}
+                        >
+                          <img src={book.coverImageLink} alt="searchResult" />
+                          <div className={styles.infoSearch}>
+                            <h3>{book.name}</h3>
+                            <h3>{book.authors[0].firstName} {book.authors[0].middleName} {book.authors[0].lastName}</h3>
+                            <h3 className={styles.priceSearch}>${book.price}</h3>
+                          </div>
+                          <div className={styles.btn}>Go to book</div>
+                        </Link>
+                      ))
+                    : null}
+                </div>
+              </div>
             </div>
 
             <div className={styles.info}>

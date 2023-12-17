@@ -8,7 +8,7 @@ export const bookSlice = createSlice({
   initialState,
   reducers: {
 
-    getAllBooks: (state, {payload: books}) => {
+    getAllBooks: (_state, {payload: books}) => {
       return books;
     },
   },

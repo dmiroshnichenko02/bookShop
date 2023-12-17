@@ -29,7 +29,7 @@ const useBookServices = () => {
 
 
   const _transformBook = (book: IBookGet) => {
-    book.coverImageLink = '/Image_not_available.png'
+    book.coverImageLink = book.coverImageLink ? book.coverImageLink : "'/Image_not_available.png'";
     return book;
   };
 
