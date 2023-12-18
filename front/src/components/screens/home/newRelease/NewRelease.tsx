@@ -68,7 +68,7 @@ const NewRelease: FC = () => {
           <div className={styles.slider}>
             <Slider {...settings}>
               {books.map((book) => (
-                <div className={styles.item}>
+                <div className={styles.item} key={book.id}>
                   <img src={book.coverImageLink} alt="book" />
                   <h3 className={styles.author}>{`By ${book.authors[0].firstName} ${book.authors[0].lastName}`}</h3>
                   <p className={styles.bookTitle}>{book.name.length > 15 ? book.name.slice(0, 15) + '...' : book.name}</p>

@@ -5,17 +5,38 @@ import { useParams } from "react-router-dom";
 
 import useBookServices from "../../../services/bookServices";
 import { IBookGet } from "../../../types/book.types";
-import { useDispatch } from "react-redux";
-import {action} from '../../../store/cart/cart.slice';
+import { useDispatch, useSelector } from "react-redux";
+import { actions } from "../../../store/cart/cart.slice";
+import { RootState } from "../../../store/store";
+import Cookies from "js-cookie";
 
 const BookItem: FC<PropsWithChildren<unknown>> = () => {
   const [book, setBook] = useState<IBookGet>();
+  const [isExist, setIsExist] = useState(false);
 
   const { id } = useParams();
 
   const numId = typeof id == "string" ? +id : null;
 
   const { getBookById, loading, error } = useBookServices();
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state: RootState) => state.cart);
+
+  useEffect(() => {
+    const getCookiesBooks = JSON.parse(Cookies.get("cart") || "[]");
+    console.log(getCookiesBooks)
+    if(cart.length === 0 && getCookiesBooks.length !== 0) {
+      getCookiesBooks.forEach((book: IBookGet) => {
+        dispatch(actions.toggleCart(book));
+      })
+    }
+    cart.forEach((book: IBookGet) => {
+      if (book.id === numId) {
+        setIsExist(true);
+      }
+    })
+  }, [id]);
 
   useEffect(() => {
     if (numId) {
@@ -27,11 +48,21 @@ const BookItem: FC<PropsWithChildren<unknown>> = () => {
     }
   }, [id]);
 
-  const dispatch = useDispatch();
-
+  
   const addToCart = () => {
-    dispatch(action.addToCart(book));
-  }
+    if (cart.includes(book!)) {
+      Cookies.set(
+        "cart",
+        JSON.stringify(cart.filter((item) => item.id !== book!.id))
+      );
+    } else {
+      Cookies.set("cart", JSON.stringify([...cart, book]));
+    }
+    dispatch(actions.toggleCart(book));
+    setIsExist(!isExist);
+  };
+
+  console.log(cart);
 
   return (
     <div className={styles.book}>
@@ -64,13 +95,17 @@ const BookItem: FC<PropsWithChildren<unknown>> = () => {
 
               <div className={styles.buyBlock}>
                 <div>Available quantity: {book.quantity}</div>
-                <form>
-                  {/* <label htmlFor="number">
+                {/* <label htmlFor="number">
                     <span>Quantity: </span>
                     <input type="number" name="number"/>
                   </label> */}
-                  <button>Add to Cart</button>
-                </form>
+                <button
+                  onClick={() => {
+                    addToCart();
+                  }}
+                >
+                  {isExist ? "Remove from cart" : "Add to cart"}
+                </button>
               </div>
 
               <div className={styles.moreInfo}>

@@ -15,7 +15,7 @@
 .imageBlock img {
   width: 500px;
   height: 500px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .bookInfo {
@@ -67,6 +67,7 @@
     border: none;
     outline: none;
     width: 250px;
+    margin: 10px 0;
     display: inline-block;
     height: 50px;
     background-color: #000;

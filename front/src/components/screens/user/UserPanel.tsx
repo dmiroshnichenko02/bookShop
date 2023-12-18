@@ -1,7 +1,8 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { actions } from "../../../store/login/login.slice.ts";
+import {actions as cartActions} from "../../../store/cart/cart.slice.ts";
 
 import styles from "./userPanel.module.scss";
 import CartItem from "./cartItem/CartItem.tsx";
@@ -9,11 +10,22 @@ import FavoritesItem from "./favoritesItem/FavoritesItem.tsx";
 import HistoryItem from "./historyItem/HistoryItem.tsx";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import { IBookGet } from "../../../types/book.types.ts";
 
 const UserPanel: FC = () => {
   const [activePanel, setActivePanel] = useState("Cart");
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const cookiesBook = JSON.parse(Cookies.get("cart") || "[]");
+    console.log(cookiesBook)
+    if(cart.length === 0 && cookiesBook.length !== 0) {
+      cookiesBook.forEach((book: IBookGet) => {
+        dispatch(cartActions.toggleCart(book));
+      })
+    }
+  }, []);
 
   const user = useSelector((state: RootState) => state.login.user);
   const cart = useSelector((state: RootState) => state.cart);

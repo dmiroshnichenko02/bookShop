@@ -193,6 +193,15 @@ const Catalog: FC = () => {
               >
                 Apply Filters
               </div>
+              <div
+                className={styles.clear}
+                onClick={() => {
+                  setAllSelected([]);
+                  setFilteredBooks(books);
+                }}
+              >
+                Clear
+              </div>
             </aside>
             <div className={styles.view}>
               {filteredBooks ? (

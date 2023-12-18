@@ -56,7 +56,7 @@ const Categories: FC = () => {
             <h2 className={styles.title}>Shop by Category</h2>
             <Slider {...settings} className={styles.slider}>
               {genres.map((genre) => (
-                <div className={styles.sliderItem} style={{ width: "212px" }}>
+                <div className={styles.sliderItem} style={{ width: "212px" }} key={genre.id}>
                   <h3 className={styles.bookTitle}>{genre.genre}</h3>
                 </div>
               ))}

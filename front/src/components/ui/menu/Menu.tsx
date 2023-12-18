@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 // import { actions } from "../../../store/login/login.slice.ts";
 import styles from "./menu.module.scss";
@@ -9,6 +9,7 @@ import logo from "../../../assets/images/LOGO-SHAPE.png";
 import searchImg from "../../../assets/images/search.svg";
 import Cookies from "js-cookie";
 import { IBook, IBookGet } from "../../../types/book.types";
+import { actions } from "../../../store/cart/cart.slice";
 
 // interface IMenu {
 //   user: string;
@@ -19,9 +20,17 @@ const Menu: FC = () => {
   const [showSearch, setShowSearch] = useState<IBook[] | any>([]);
   const user = useSelector((state: RootState) => state.login.user);
   const authCookie = Cookies.get("authCookie");
-  console.log(authCookie);
+  const booksCookies = JSON.parse(Cookies.get("cart") || "[]");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    booksCookies.forEach((book: IBookGet) => {
+      dispatch(actions.toggleCart(book));
+    })
+  }, [])
 
   const books = useSelector((state: RootState) => state.books);
+  const cart = useSelector((state: RootState) => state.cart);
 
   const viewSearchResult = () => {
     if (search !== "") {
@@ -115,9 +124,11 @@ const Menu: FC = () => {
                   Profile
                 </Link>
               )}
+              <Link to={"/user"}>
               <div className={styles.cart}>
-                Cart <span>0</span>
+                Cart <span>{cart.length > 9 ? "9+" : cart.length}</span>
               </div>
+              </Link>
             </div>
           </div>
         </div>

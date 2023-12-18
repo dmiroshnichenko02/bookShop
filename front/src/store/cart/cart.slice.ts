@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IBook } from "../../types/book.types";
+import { IBookGet } from "../../types/book.types";
 
-const initialState: IBook[] = [];
+const initialState: IBookGet[] = [];
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -10,12 +10,12 @@ export const cartSlice = createSlice({
     toggleCart: (state, { payload: book }) => {
       const isExist = state.some((b) => b.id === book.id);
       if (isExist) {
-        state = state.filter((b) => b.id !== book.id);
+        return state.filter((b) => b.id !== book.id);
       } else {
-        state.push(book);
+        return [...state, book];
       }
     },
   },
 });
 
-export const {actions, reducer} = cartSlice
+export const { actions, reducer } = cartSlice;
